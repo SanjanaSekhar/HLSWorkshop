@@ -4,7 +4,7 @@
 //remove the else parts
 
 #include <stdint.h>
-#include "MakeHT.h"
+#include "MakeHT2.h"
 
 void MakeHT(uint16_t rgnET[NCrts*NCrds*NRgns], uint16_t hfET[NCrts*NHFRgns], uint16_t HT[3]) {
 #pragma HLS PIPELINE II=6

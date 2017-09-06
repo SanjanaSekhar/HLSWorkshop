@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-#include "MakeHT.h"
+#include "MakeHT2.h"
 
 #define NCrts 18
 #define NCrds 7
@@ -81,7 +81,7 @@ int main(int argc, char **argv) {
 
   // Determine HT using software
 
-  uint16_t HT = 0;
+  uint16_t HT[3] = {0,0,0};
   for(iCrt = 0; iCrt < NCrts; iCrt++) {
     for(iCrd = 0; iCrd < NCrds; iCrd++) {
       for(iRgn = 0; iRgn < NRgns; iRgn++) {
@@ -110,13 +110,13 @@ int main(int argc, char **argv) {
   // Compare
 
   printf("C says: HT[0] = %d; HLS says: HT[0] = %d\n", HT[0], hlsHT[0]);
-  if(HT[0] != hlsHT[0]) {
+  if(HT[0] != hlsHT[0]) 
     printf("Test failed\n");
   printf("C says: HT[1] = %d; HLS says: HT[1] = %d\n", HT[1], hlsHT[1]);
-  if(HT[1] != hlsHT[1]) {
+  if(HT[1] != hlsHT[1]) 
     printf("Test failed\n");
   printf("C says: HT[2] = %d; HLS says: HT[2] = %d\n", HT[2], hlsHT[2]);
-  if(HT[2] != hlsHT[2]) {
+  if(HT[2] != hlsHT[2]) 
     printf("Test failed\n");
     //return 1;
-  }
+}  
