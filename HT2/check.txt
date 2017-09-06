@@ -1,1 +1,3 @@
 Just checking if pushing is working fine. 
+
+Do we need to git push -u origin master everytime or is git add enough?
