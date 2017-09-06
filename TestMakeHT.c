@@ -107,3 +107,10 @@ int main(int argc, char **argv) {
     printf("Test failed\n");
     return 1;
   }
+  else printf("Test succeeded\n");
+
+  WriteLinkMapHT(rgnET, hfET, hlsHT);
+
+  return 0;
+
+}

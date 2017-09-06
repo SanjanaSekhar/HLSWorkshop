@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # VivadoHLSProjects
 
 There are three projects in this repository.
@@ -37,3 +38,6 @@ Vivado HLS Instructions:
  - Set your project up using the files
     - Make sure you add the core algorithm and testbench
     - Simulate and synthesize away
+=======
+#HLSWorkshop
+>>>>>>> 1f81971274291f07948f46d67f05999fc295fb3d
