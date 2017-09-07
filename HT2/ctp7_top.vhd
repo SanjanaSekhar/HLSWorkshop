@@ -1185,7 +1185,7 @@ i_pattern_io_engine : entity work.pattern_io_engine
 -- Begin User_Code
 -----------------------------------------------------------------------------
      
-   i_hls_demo_0 : hls_demo_0
+   i_MakeHT_0 : MakeHT_0
        PORT MAP (
          ap_clk => ap_clk,
          ap_rst => ap_rst,
