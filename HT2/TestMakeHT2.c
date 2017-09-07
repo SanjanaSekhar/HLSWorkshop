@@ -8,7 +8,7 @@
 #define NRgns 2
 #define NHFRgns 8
 
-void WriteLinkMapHT(uint16_t rgnET[NCrts*NCrds*NRgns], uint16_t hfET[NCrts*NHFRgns], uint16_t HT[1]) {
+void WriteLinkMapHT(uint16_t rgnET[NCrts*NCrds*NRgns], uint16_t hfET[NCrts*NHFRgns], uint16_t HT) {
   // This code is to write suitable mapping of inputs to signals in the CTP7_HLS project from Ales
   // Block 1 of User Code
   int iRgn, iHFRgn, link, loBit, hiBit;
@@ -108,7 +108,7 @@ int main(int argc, char **argv) {
   //uint16_t hlsHT = 0;
   uint16_t hlsHT[3]={0,0,0};
   MakeHT(rgnET, hfET, hlsHT);
-
+  WriteLinkMapHT(rgnET, hfET, hlsHT[0]);
   // Compare
 
   printf("C says: HT[0] = %d; HLS says: HT[0] = %d\n", HT[0], hlsHT[0]);
