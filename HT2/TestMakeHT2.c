@@ -88,17 +88,19 @@ int main(int argc, char **argv) {
         i = iCrt * NCrds * NRgns + iCrd * NRgns + iRgn;
         //if(rgnET[i] > MinETCutForHT) HT += rgnET[i];
         if(rgnET[i] > MinETCutForHT1) HT[0] += rgnET[i];
-        if(rgnET[i] > MinETCutForHT2) HT[1] += rgnET[i];
-        if(rgnET[i] > MinETCutForHT3) HT[2] += rgnET[i];
-      }
+        else {if(rgnET[i] > MinETCutForHT2) HT[1] += rgnET[i];
+        else {if(rgnET[i] > MinETCutForHT3) HT[2] += rgnET[i];
+        else HT[0]+=0;
+      }}}
     }
     for(iHFRgn = 0; iHFRgn < NHFRgns; iHFRgn++) {
       i = iCrt * NHFRgns + iHFRgn;
       //if(hfET[i] > MinHFETCutForHT) HT += hfET[i];
       if(hfET[i] > MinHFETCutForHT1) HT[0] += hfET[i];
-      if(hfET[i] > MinHFETCutForHT2) HT[1] += hfET[i];
-      if(hfET[i] > MinHFETCutForHT3) HT[2] += hfET[i];
-    }
+      else {if(hfET[i] > MinHFETCutForHT2) HT[1] += hfET[i];
+      else {if(hfET[i] > MinHFETCutForHT3) HT[2] += hfET[i];
+      else HT[0]+=0;
+    }}}
   }
 
   // Determine HT using hardware simulation
