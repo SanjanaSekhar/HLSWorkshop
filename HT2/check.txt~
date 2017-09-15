@@ -5,6 +5,3 @@ Do we need to git push -u origin master everytime or is git add enough?
 checking if git credential store works
 
 checking 2 if git credential store works
-
-checking if can evade putting password for ssh too
-
