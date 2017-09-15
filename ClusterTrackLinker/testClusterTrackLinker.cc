@@ -438,6 +438,23 @@ void WriteLinkMapCTL(
   }
   printf("s_OUTPUT_LINK_ARR( 0 )(15 downto 0) <= HT_0;\n");
   */
+  printf("\n----------------ClusterFinder---------------\n\n");
+  int k=0;
+  for(iRgn = 0; iRgn < NCaloLayer1Eta; iRgn++) {
+    for(jRgn = 0; jRgn < NCaloLayer1Phi; jRgn++){
+      for(mRgn = 0; mRgn < NCrystalsPerEtaPhi; mRgn++){
+        for (hRgn =0; hRgn < NCrystalsPerEtaPhi; hRgn++)
+        {
+           link = (k / 12);
+           loBit = (k % 12) * 16;
+           hiBit = loBit + 15;
+           k++;
+           printf("crystals_%d%d%d%d <= s_INPUT_LINK_ARR( %d )(%d downto %d);\n", iRgn, jRgn, mRgn, hRgn, link, hiBit, loBit);
+        }
+      }
+    }
+  }
+  
 }
 
 int main(int argc, char **argv) {
