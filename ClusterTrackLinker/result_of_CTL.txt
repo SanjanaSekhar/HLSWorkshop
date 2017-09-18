@@ -121,9 +121,6 @@ clusterEta	clusterPhi	clusterET
 2366	3316	1049
 2535	0	6
 2535	3141	12
-
-----------------ClusterTrackLinker---------------
-
 peakEta_0_0 : IN STD_LOGIC_VECTOR (15 downto 0);
 peakEta_0_1 : IN STD_LOGIC_VECTOR (15 downto 0);
 peakEta_0_2 : IN STD_LOGIC_VECTOR (15 downto 0);
@@ -749,9 +746,6 @@ signal neutralClusterPhi_24 : STD_LOGIC_VECTOR (15 downto 0);
 signal neutralClusterPhi_25 : STD_LOGIC_VECTOR (15 downto 0);
 signal neutralClusterPhi_26 : STD_LOGIC_VECTOR (15 downto 0);
 signal neutralClusterPhi_27 : STD_LOGIC_VECTOR (15 downto 0);
-
-----------------ClusterTrackLinker---------------
-
 peakEta_0_0 => peakEta_0_0,
 peakEta_0_1 => peakEta_0_1,
 peakEta_0_2 => peakEta_0_2,
@@ -1063,9 +1057,6 @@ neutralClusterPhi_24 => neutralClusterPhi_24,
 neutralClusterPhi_25 => neutralClusterPhi_25,
 neutralClusterPhi_26 => neutralClusterPhi_26,
 neutralClusterPhi_27 => neutralClusterPhi_27,
-
-----------------ClusterFinder---------------
-
 peakEta_0_0 <= s_INPUT_LINK_ARR( 0 )(15 downto 0);
 peakEta_0_1 <= s_INPUT_LINK_ARR( 0 )(31 downto 16);
 peakEta_0_2 <= s_INPUT_LINK_ARR( 0 )(47 downto 32);
