@@ -58,7 +58,7 @@ void WriteLinkMapCTL(
   int iRgn, jRgn, mRgn, hRgn, iHFRgn, link, loBit, hiBit;
 
   //ClusterTrackLinker
-  printf("\n----------------ClusterTrackLinker---------------\n\n");
+  //printf("\n----------------ClusterTrackLinker---------------\n\n");
   for(mRgn = 0; mRgn < NCrystalsPerEtaPhi; mRgn++){
         for (hRgn =0; hRgn < NCrystalsPerEtaPhi; hRgn++)
         {
@@ -219,7 +219,7 @@ void WriteLinkMapCTL(
   // Block 3
   
   //ClusterTrackLinker
-  printf("\n----------------ClusterTrackLinker---------------\n\n");
+  //printf("\n----------------ClusterTrackLinker---------------\n\n");
   for(mRgn = 0; mRgn < NCrystalsPerEtaPhi; mRgn++){
         for (hRgn =0; hRgn < NCrystalsPerEtaPhi; hRgn++)
         {
@@ -323,7 +323,7 @@ void WriteLinkMapCTL(
 
 ------ CHECK THE BIT NUMBERS AND LINK NUMBERS IN ALL------
    */
-  printf("\n----------------ClusterFinder---------------\n\n");
+  //printf("\n----------------ClusterFinder---------------\n\n");
   int k=0;
   
       for(mRgn = 0; mRgn < NCrystalsPerEtaPhi; mRgn++){
