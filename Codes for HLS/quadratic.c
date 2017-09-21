@@ -16,6 +16,7 @@ void findRoots(double a,double b,double c,double result[2],uint16_t sqrts[20][2]
 	{
 		//unroll here or outside makes no diff
 		//unroll presence or absence makes no diff
+		//only int sqrts supported!
 		if(sqrts[i][0]==((b*b)-(4*a*c)))
 			sqroot=sqrts[i][1];
 	}
