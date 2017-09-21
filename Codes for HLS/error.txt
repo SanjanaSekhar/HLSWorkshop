@@ -1,0 +1,11 @@
+[ctp7hls@uwlogin ctp7_hls_client_sw]$ ./download_inputs 0 bucky0
+./download_inputs: error while loading shared libraries: libCTP7AlgoClient.so: cannot open shared object file: No such file or directory
+
+[ctp7hls@uwlogin ctp7_hls_client_sw]$ ./download_inputs 0 bucky0
+Couldnt connect to phi 0: RPCSvc Exception: Unable to resolve hostname
+Segmentation fault (core dumped)
+
+[ctp7hls@uwlogin ctp7_hls_client_sw]$ ./upload_inputs 0 bucky0
+Couldnt connect to phi 0: RPCSvc Exception: Unable to resolve hostname
+Segmentation fault (core dumped)
+
