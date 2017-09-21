@@ -5,7 +5,8 @@
 void findRoots(double a,double b,double c,double result[2])
 {
 	//find the roots of the equation ax^2+bx+c=0
-
+	#pragma HLS PIPELINE
+	#pragma HLS ARRAY_PARTITION variable=result complete
 	double sqroot;
 	sqroot=sqrt((b*b)-(4*a*c));
 	result[0]= (-b+sqroot)/(2*a);
