@@ -6,13 +6,16 @@
 void findRoots(double a,double b,double c,double result[2],uint16_t sqrts[20][2])
 {
 	//find the roots of the equation ax^2+bx+c=0
-	#pragma HLS DATAFLOW
+	//#pragma HLS DATAFLOW (doesn't decrease latency)
 	#pragma HLS PIPELINE
 	#pragma HLS ARRAY_PARTITION variable=result complete
+	#pragma HLS ARRAY_PARTITION variable=sqrts complete //adding this decreases latency!
 	double sqroot;
+	#pragma HLS UNROLL
 	for(int i=0;i<20;i++)
 	{
-		#pragma HLS UNROLL
+		//unroll here or outside makes no diff
+		//unroll presence or absence makes no diff
 		if(sqrts[i][0]==((b*b)-(4*a*c)))
 			sqroot=sqrts[i][1];
 	}
