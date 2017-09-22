@@ -339,74 +339,74 @@ peakPhi_16_1 : IN STD_LOGIC_VECTOR (15 downto 0);
 peakPhi_16_2 : IN STD_LOGIC_VECTOR (15 downto 0);
 peakPhi_16_3 : IN STD_LOGIC_VECTOR (15 downto 0);
 
-smallClusterET_0_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_0_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_0_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_0_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_1_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_1_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_1_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_1_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_2_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_2_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_2_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_2_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_3_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_3_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_3_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_3_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_4_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_4_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_4_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_4_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_5_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_5_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_5_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_5_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_6_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_6_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_6_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_6_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_7_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_7_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_7_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_7_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_8_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_8_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_8_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_8_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_9_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_9_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_9_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_9_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_10_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_10_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_10_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_10_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_11_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_11_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_11_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_11_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_12_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_12_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_12_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_12_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_13_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_13_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_13_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_13_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_14_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_14_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_14_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_14_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_15_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_15_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_15_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_15_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_16_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_16_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_16_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_16_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_0_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_0_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_0_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_0_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_1_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_1_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_1_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_1_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_2_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_2_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_2_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_2_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_3_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_3_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_3_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_3_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_4_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_4_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_4_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_4_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_5_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_5_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_5_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_5_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_6_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_6_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_6_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_6_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_7_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_7_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_7_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_7_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_8_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_8_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_8_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_8_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_9_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_9_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_9_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_9_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_10_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_10_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_10_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_10_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_11_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_11_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_11_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_11_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_12_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_12_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_12_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_12_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_13_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_13_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_13_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_13_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_14_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_14_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_14_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_14_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_15_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_15_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_15_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_15_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_16_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_16_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_16_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_16_3 : IN STD_LOGIC_VECTOR (15 downto 0);
 
 trackPT_0 : IN STD_LOGIC_VECTOR (15 downto 0);
 trackPT_1 : IN STD_LOGIC_VECTOR (15 downto 0);
@@ -910,74 +910,74 @@ signal peakPhi_16_1 : STD_LOGIC_VECTOR (15 downto 0);
 signal peakPhi_16_2 : STD_LOGIC_VECTOR (15 downto 0);
 signal peakPhi_16_3 : STD_LOGIC_VECTOR (15 downto 0);
 
-signal smallClusterET_0_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_0_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_0_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_0_3 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_1_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_1_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_1_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_1_3 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_2_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_2_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_2_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_2_3 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_3_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_3_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_3_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_3_3 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_4_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_4_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_4_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_4_3 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_5_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_5_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_5_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_5_3 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_6_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_6_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_6_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_6_3 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_7_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_7_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_7_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_7_3 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_8_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_8_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_8_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_8_3 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_9_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_9_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_9_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_9_3 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_10_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_10_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_10_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_10_3 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_11_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_11_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_11_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_11_3 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_12_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_12_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_12_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_12_3 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_13_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_13_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_13_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_13_3 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_14_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_14_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_14_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_14_3 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_15_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_15_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_15_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_15_3 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_16_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_16_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_16_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_16_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_0_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_0_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_0_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_0_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_1_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_1_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_1_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_1_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_2_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_2_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_2_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_2_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_3_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_3_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_3_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_3_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_4_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_4_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_4_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_4_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_5_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_5_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_5_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_5_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_6_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_6_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_6_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_6_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_7_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_7_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_7_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_7_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_8_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_8_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_8_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_8_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_9_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_9_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_9_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_9_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_10_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_10_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_10_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_10_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_11_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_11_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_11_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_11_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_12_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_12_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_12_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_12_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_13_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_13_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_13_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_13_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_14_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_14_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_14_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_14_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_15_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_15_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_15_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_15_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_16_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_16_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_16_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_16_3 : STD_LOGIC_VECTOR (15 downto 0);
 
 signal trackPT_0 : STD_LOGIC_VECTOR (15 downto 0);
 signal trackPT_1 : STD_LOGIC_VECTOR (15 downto 0);
@@ -1657,74 +1657,74 @@ peakPhi_16_1 => peakPhi_16_1,
 peakPhi_16_2 => peakPhi_16_2,
 peakPhi_16_3 => peakPhi_16_3,
 
-smallClusterET_0_0 => smallClusterET_0_0,
-smallClusterET_0_1 => smallClusterET_0_1,
-smallClusterET_0_2 => smallClusterET_0_2,
-smallClusterET_0_3 => smallClusterET_0_3,
-smallClusterET_1_0 => smallClusterET_1_0,
-smallClusterET_1_1 => smallClusterET_1_1,
-smallClusterET_1_2 => smallClusterET_1_2,
-smallClusterET_1_3 => smallClusterET_1_3,
-smallClusterET_2_0 => smallClusterET_2_0,
-smallClusterET_2_1 => smallClusterET_2_1,
-smallClusterET_2_2 => smallClusterET_2_2,
-smallClusterET_2_3 => smallClusterET_2_3,
-smallClusterET_3_0 => smallClusterET_3_0,
-smallClusterET_3_1 => smallClusterET_3_1,
-smallClusterET_3_2 => smallClusterET_3_2,
-smallClusterET_3_3 => smallClusterET_3_3,
-smallClusterET_4_0 => smallClusterET_4_0,
-smallClusterET_4_1 => smallClusterET_4_1,
-smallClusterET_4_2 => smallClusterET_4_2,
-smallClusterET_4_3 => smallClusterET_4_3,
-smallClusterET_5_0 => smallClusterET_5_0,
-smallClusterET_5_1 => smallClusterET_5_1,
-smallClusterET_5_2 => smallClusterET_5_2,
-smallClusterET_5_3 => smallClusterET_5_3,
-smallClusterET_6_0 => smallClusterET_6_0,
-smallClusterET_6_1 => smallClusterET_6_1,
-smallClusterET_6_2 => smallClusterET_6_2,
-smallClusterET_6_3 => smallClusterET_6_3,
-smallClusterET_7_0 => smallClusterET_7_0,
-smallClusterET_7_1 => smallClusterET_7_1,
-smallClusterET_7_2 => smallClusterET_7_2,
-smallClusterET_7_3 => smallClusterET_7_3,
-smallClusterET_8_0 => smallClusterET_8_0,
-smallClusterET_8_1 => smallClusterET_8_1,
-smallClusterET_8_2 => smallClusterET_8_2,
-smallClusterET_8_3 => smallClusterET_8_3,
-smallClusterET_9_0 => smallClusterET_9_0,
-smallClusterET_9_1 => smallClusterET_9_1,
-smallClusterET_9_2 => smallClusterET_9_2,
-smallClusterET_9_3 => smallClusterET_9_3,
-smallClusterET_10_0 => smallClusterET_10_0,
-smallClusterET_10_1 => smallClusterET_10_1,
-smallClusterET_10_2 => smallClusterET_10_2,
-smallClusterET_10_3 => smallClusterET_10_3,
-smallClusterET_11_0 => smallClusterET_11_0,
-smallClusterET_11_1 => smallClusterET_11_1,
-smallClusterET_11_2 => smallClusterET_11_2,
-smallClusterET_11_3 => smallClusterET_11_3,
-smallClusterET_12_0 => smallClusterET_12_0,
-smallClusterET_12_1 => smallClusterET_12_1,
-smallClusterET_12_2 => smallClusterET_12_2,
-smallClusterET_12_3 => smallClusterET_12_3,
-smallClusterET_13_0 => smallClusterET_13_0,
-smallClusterET_13_1 => smallClusterET_13_1,
-smallClusterET_13_2 => smallClusterET_13_2,
-smallClusterET_13_3 => smallClusterET_13_3,
-smallClusterET_14_0 => smallClusterET_14_0,
-smallClusterET_14_1 => smallClusterET_14_1,
-smallClusterET_14_2 => smallClusterET_14_2,
-smallClusterET_14_3 => smallClusterET_14_3,
-smallClusterET_15_0 => smallClusterET_15_0,
-smallClusterET_15_1 => smallClusterET_15_1,
-smallClusterET_15_2 => smallClusterET_15_2,
-smallClusterET_15_3 => smallClusterET_15_3,
-smallClusterET_16_0 => smallClusterET_16_0,
-smallClusterET_16_1 => smallClusterET_16_1,
-smallClusterET_16_2 => smallClusterET_16_2,
-smallClusterET_16_3 => smallClusterET_16_3,
+clusterET_0_0 => clusterET_0_0,
+clusterET_0_1 => clusterET_0_1,
+clusterET_0_2 => clusterET_0_2,
+clusterET_0_3 => clusterET_0_3,
+clusterET_1_0 => clusterET_1_0,
+clusterET_1_1 => clusterET_1_1,
+clusterET_1_2 => clusterET_1_2,
+clusterET_1_3 => clusterET_1_3,
+clusterET_2_0 => clusterET_2_0,
+clusterET_2_1 => clusterET_2_1,
+clusterET_2_2 => clusterET_2_2,
+clusterET_2_3 => clusterET_2_3,
+clusterET_3_0 => clusterET_3_0,
+clusterET_3_1 => clusterET_3_1,
+clusterET_3_2 => clusterET_3_2,
+clusterET_3_3 => clusterET_3_3,
+clusterET_4_0 => clusterET_4_0,
+clusterET_4_1 => clusterET_4_1,
+clusterET_4_2 => clusterET_4_2,
+clusterET_4_3 => clusterET_4_3,
+clusterET_5_0 => clusterET_5_0,
+clusterET_5_1 => clusterET_5_1,
+clusterET_5_2 => clusterET_5_2,
+clusterET_5_3 => clusterET_5_3,
+clusterET_6_0 => clusterET_6_0,
+clusterET_6_1 => clusterET_6_1,
+clusterET_6_2 => clusterET_6_2,
+clusterET_6_3 => clusterET_6_3,
+clusterET_7_0 => clusterET_7_0,
+clusterET_7_1 => clusterET_7_1,
+clusterET_7_2 => clusterET_7_2,
+clusterET_7_3 => clusterET_7_3,
+clusterET_8_0 => clusterET_8_0,
+clusterET_8_1 => clusterET_8_1,
+clusterET_8_2 => clusterET_8_2,
+clusterET_8_3 => clusterET_8_3,
+clusterET_9_0 => clusterET_9_0,
+clusterET_9_1 => clusterET_9_1,
+clusterET_9_2 => clusterET_9_2,
+clusterET_9_3 => clusterET_9_3,
+clusterET_10_0 => clusterET_10_0,
+clusterET_10_1 => clusterET_10_1,
+clusterET_10_2 => clusterET_10_2,
+clusterET_10_3 => clusterET_10_3,
+clusterET_11_0 => clusterET_11_0,
+clusterET_11_1 => clusterET_11_1,
+clusterET_11_2 => clusterET_11_2,
+clusterET_11_3 => clusterET_11_3,
+clusterET_12_0 => clusterET_12_0,
+clusterET_12_1 => clusterET_12_1,
+clusterET_12_2 => clusterET_12_2,
+clusterET_12_3 => clusterET_12_3,
+clusterET_13_0 => clusterET_13_0,
+clusterET_13_1 => clusterET_13_1,
+clusterET_13_2 => clusterET_13_2,
+clusterET_13_3 => clusterET_13_3,
+clusterET_14_0 => clusterET_14_0,
+clusterET_14_1 => clusterET_14_1,
+clusterET_14_2 => clusterET_14_2,
+clusterET_14_3 => clusterET_14_3,
+clusterET_15_0 => clusterET_15_0,
+clusterET_15_1 => clusterET_15_1,
+clusterET_15_2 => clusterET_15_2,
+clusterET_15_3 => clusterET_15_3,
+clusterET_16_0 => clusterET_16_0,
+clusterET_16_1 => clusterET_16_1,
+clusterET_16_2 => clusterET_16_2,
+clusterET_16_3 => clusterET_16_3,
 
 trackPT_0 => trackPT_0,
 trackPT_1 => trackPT_1,
@@ -2225,74 +2225,74 @@ peakPhi_16_1 <= s_INPUT_LINK_ARR( 11 )(31 downto 16);
 peakPhi_16_2 <= s_INPUT_LINK_ARR( 11 )(47 downto 32);
 peakPhi_16_3 <= s_INPUT_LINK_ARR( 11 )(63 downto 48);
 
-smallClusterET_0_0 <= s_INPUT_LINK_ARR( 11 )(79 downto 64);
-smallClusterET_0_1 <= s_INPUT_LINK_ARR( 11 )(95 downto 80);
-smallClusterET_0_2 <= s_INPUT_LINK_ARR( 11 )(111 downto 96);
-smallClusterET_0_3 <= s_INPUT_LINK_ARR( 11 )(127 downto 112);
-smallClusterET_1_0 <= s_INPUT_LINK_ARR( 11 )(143 downto 128);
-smallClusterET_1_1 <= s_INPUT_LINK_ARR( 11 )(159 downto 144);
-smallClusterET_1_2 <= s_INPUT_LINK_ARR( 11 )(175 downto 160);
-smallClusterET_1_3 <= s_INPUT_LINK_ARR( 11 )(191 downto 176);
-smallClusterET_2_0 <= s_INPUT_LINK_ARR( 12 )(15 downto 0);
-smallClusterET_2_1 <= s_INPUT_LINK_ARR( 12 )(31 downto 16);
-smallClusterET_2_2 <= s_INPUT_LINK_ARR( 12 )(47 downto 32);
-smallClusterET_2_3 <= s_INPUT_LINK_ARR( 12 )(63 downto 48);
-smallClusterET_3_0 <= s_INPUT_LINK_ARR( 12 )(79 downto 64);
-smallClusterET_3_1 <= s_INPUT_LINK_ARR( 12 )(95 downto 80);
-smallClusterET_3_2 <= s_INPUT_LINK_ARR( 12 )(111 downto 96);
-smallClusterET_3_3 <= s_INPUT_LINK_ARR( 12 )(127 downto 112);
-smallClusterET_4_0 <= s_INPUT_LINK_ARR( 12 )(143 downto 128);
-smallClusterET_4_1 <= s_INPUT_LINK_ARR( 12 )(159 downto 144);
-smallClusterET_4_2 <= s_INPUT_LINK_ARR( 12 )(175 downto 160);
-smallClusterET_4_3 <= s_INPUT_LINK_ARR( 12 )(191 downto 176);
-smallClusterET_5_0 <= s_INPUT_LINK_ARR( 13 )(15 downto 0);
-smallClusterET_5_1 <= s_INPUT_LINK_ARR( 13 )(31 downto 16);
-smallClusterET_5_2 <= s_INPUT_LINK_ARR( 13 )(47 downto 32);
-smallClusterET_5_3 <= s_INPUT_LINK_ARR( 13 )(63 downto 48);
-smallClusterET_6_0 <= s_INPUT_LINK_ARR( 13 )(79 downto 64);
-smallClusterET_6_1 <= s_INPUT_LINK_ARR( 13 )(95 downto 80);
-smallClusterET_6_2 <= s_INPUT_LINK_ARR( 13 )(111 downto 96);
-smallClusterET_6_3 <= s_INPUT_LINK_ARR( 13 )(127 downto 112);
-smallClusterET_7_0 <= s_INPUT_LINK_ARR( 13 )(143 downto 128);
-smallClusterET_7_1 <= s_INPUT_LINK_ARR( 13 )(159 downto 144);
-smallClusterET_7_2 <= s_INPUT_LINK_ARR( 13 )(175 downto 160);
-smallClusterET_7_3 <= s_INPUT_LINK_ARR( 13 )(191 downto 176);
-smallClusterET_8_0 <= s_INPUT_LINK_ARR( 14 )(15 downto 0);
-smallClusterET_8_1 <= s_INPUT_LINK_ARR( 14 )(31 downto 16);
-smallClusterET_8_2 <= s_INPUT_LINK_ARR( 14 )(47 downto 32);
-smallClusterET_8_3 <= s_INPUT_LINK_ARR( 14 )(63 downto 48);
-smallClusterET_9_0 <= s_INPUT_LINK_ARR( 14 )(79 downto 64);
-smallClusterET_9_1 <= s_INPUT_LINK_ARR( 14 )(95 downto 80);
-smallClusterET_9_2 <= s_INPUT_LINK_ARR( 14 )(111 downto 96);
-smallClusterET_9_3 <= s_INPUT_LINK_ARR( 14 )(127 downto 112);
-smallClusterET_10_0 <= s_INPUT_LINK_ARR( 14 )(143 downto 128);
-smallClusterET_10_1 <= s_INPUT_LINK_ARR( 14 )(159 downto 144);
-smallClusterET_10_2 <= s_INPUT_LINK_ARR( 14 )(175 downto 160);
-smallClusterET_10_3 <= s_INPUT_LINK_ARR( 14 )(191 downto 176);
-smallClusterET_11_0 <= s_INPUT_LINK_ARR( 15 )(15 downto 0);
-smallClusterET_11_1 <= s_INPUT_LINK_ARR( 15 )(31 downto 16);
-smallClusterET_11_2 <= s_INPUT_LINK_ARR( 15 )(47 downto 32);
-smallClusterET_11_3 <= s_INPUT_LINK_ARR( 15 )(63 downto 48);
-smallClusterET_12_0 <= s_INPUT_LINK_ARR( 15 )(79 downto 64);
-smallClusterET_12_1 <= s_INPUT_LINK_ARR( 15 )(95 downto 80);
-smallClusterET_12_2 <= s_INPUT_LINK_ARR( 15 )(111 downto 96);
-smallClusterET_12_3 <= s_INPUT_LINK_ARR( 15 )(127 downto 112);
-smallClusterET_13_0 <= s_INPUT_LINK_ARR( 15 )(143 downto 128);
-smallClusterET_13_1 <= s_INPUT_LINK_ARR( 15 )(159 downto 144);
-smallClusterET_13_2 <= s_INPUT_LINK_ARR( 15 )(175 downto 160);
-smallClusterET_13_3 <= s_INPUT_LINK_ARR( 15 )(191 downto 176);
-smallClusterET_14_0 <= s_INPUT_LINK_ARR( 16 )(15 downto 0);
-smallClusterET_14_1 <= s_INPUT_LINK_ARR( 16 )(31 downto 16);
-smallClusterET_14_2 <= s_INPUT_LINK_ARR( 16 )(47 downto 32);
-smallClusterET_14_3 <= s_INPUT_LINK_ARR( 16 )(63 downto 48);
-smallClusterET_15_0 <= s_INPUT_LINK_ARR( 16 )(79 downto 64);
-smallClusterET_15_1 <= s_INPUT_LINK_ARR( 16 )(95 downto 80);
-smallClusterET_15_2 <= s_INPUT_LINK_ARR( 16 )(111 downto 96);
-smallClusterET_15_3 <= s_INPUT_LINK_ARR( 16 )(127 downto 112);
-smallClusterET_16_0 <= s_INPUT_LINK_ARR( 16 )(143 downto 128);
-smallClusterET_16_1 <= s_INPUT_LINK_ARR( 16 )(159 downto 144);
-smallClusterET_16_2 <= s_INPUT_LINK_ARR( 16 )(175 downto 160);
-smallClusterET_16_3 <= s_INPUT_LINK_ARR( 16 )(191 downto 176);
+clusterET_0_0 <= s_INPUT_LINK_ARR( 11 )(79 downto 64);
+clusterET_0_1 <= s_INPUT_LINK_ARR( 11 )(95 downto 80);
+clusterET_0_2 <= s_INPUT_LINK_ARR( 11 )(111 downto 96);
+clusterET_0_3 <= s_INPUT_LINK_ARR( 11 )(127 downto 112);
+clusterET_1_0 <= s_INPUT_LINK_ARR( 11 )(143 downto 128);
+clusterET_1_1 <= s_INPUT_LINK_ARR( 11 )(159 downto 144);
+clusterET_1_2 <= s_INPUT_LINK_ARR( 11 )(175 downto 160);
+clusterET_1_3 <= s_INPUT_LINK_ARR( 11 )(191 downto 176);
+clusterET_2_0 <= s_INPUT_LINK_ARR( 12 )(15 downto 0);
+clusterET_2_1 <= s_INPUT_LINK_ARR( 12 )(31 downto 16);
+clusterET_2_2 <= s_INPUT_LINK_ARR( 12 )(47 downto 32);
+clusterET_2_3 <= s_INPUT_LINK_ARR( 12 )(63 downto 48);
+clusterET_3_0 <= s_INPUT_LINK_ARR( 12 )(79 downto 64);
+clusterET_3_1 <= s_INPUT_LINK_ARR( 12 )(95 downto 80);
+clusterET_3_2 <= s_INPUT_LINK_ARR( 12 )(111 downto 96);
+clusterET_3_3 <= s_INPUT_LINK_ARR( 12 )(127 downto 112);
+clusterET_4_0 <= s_INPUT_LINK_ARR( 12 )(143 downto 128);
+clusterET_4_1 <= s_INPUT_LINK_ARR( 12 )(159 downto 144);
+clusterET_4_2 <= s_INPUT_LINK_ARR( 12 )(175 downto 160);
+clusterET_4_3 <= s_INPUT_LINK_ARR( 12 )(191 downto 176);
+clusterET_5_0 <= s_INPUT_LINK_ARR( 13 )(15 downto 0);
+clusterET_5_1 <= s_INPUT_LINK_ARR( 13 )(31 downto 16);
+clusterET_5_2 <= s_INPUT_LINK_ARR( 13 )(47 downto 32);
+clusterET_5_3 <= s_INPUT_LINK_ARR( 13 )(63 downto 48);
+clusterET_6_0 <= s_INPUT_LINK_ARR( 13 )(79 downto 64);
+clusterET_6_1 <= s_INPUT_LINK_ARR( 13 )(95 downto 80);
+clusterET_6_2 <= s_INPUT_LINK_ARR( 13 )(111 downto 96);
+clusterET_6_3 <= s_INPUT_LINK_ARR( 13 )(127 downto 112);
+clusterET_7_0 <= s_INPUT_LINK_ARR( 13 )(143 downto 128);
+clusterET_7_1 <= s_INPUT_LINK_ARR( 13 )(159 downto 144);
+clusterET_7_2 <= s_INPUT_LINK_ARR( 13 )(175 downto 160);
+clusterET_7_3 <= s_INPUT_LINK_ARR( 13 )(191 downto 176);
+clusterET_8_0 <= s_INPUT_LINK_ARR( 14 )(15 downto 0);
+clusterET_8_1 <= s_INPUT_LINK_ARR( 14 )(31 downto 16);
+clusterET_8_2 <= s_INPUT_LINK_ARR( 14 )(47 downto 32);
+clusterET_8_3 <= s_INPUT_LINK_ARR( 14 )(63 downto 48);
+clusterET_9_0 <= s_INPUT_LINK_ARR( 14 )(79 downto 64);
+clusterET_9_1 <= s_INPUT_LINK_ARR( 14 )(95 downto 80);
+clusterET_9_2 <= s_INPUT_LINK_ARR( 14 )(111 downto 96);
+clusterET_9_3 <= s_INPUT_LINK_ARR( 14 )(127 downto 112);
+clusterET_10_0 <= s_INPUT_LINK_ARR( 14 )(143 downto 128);
+clusterET_10_1 <= s_INPUT_LINK_ARR( 14 )(159 downto 144);
+clusterET_10_2 <= s_INPUT_LINK_ARR( 14 )(175 downto 160);
+clusterET_10_3 <= s_INPUT_LINK_ARR( 14 )(191 downto 176);
+clusterET_11_0 <= s_INPUT_LINK_ARR( 15 )(15 downto 0);
+clusterET_11_1 <= s_INPUT_LINK_ARR( 15 )(31 downto 16);
+clusterET_11_2 <= s_INPUT_LINK_ARR( 15 )(47 downto 32);
+clusterET_11_3 <= s_INPUT_LINK_ARR( 15 )(63 downto 48);
+clusterET_12_0 <= s_INPUT_LINK_ARR( 15 )(79 downto 64);
+clusterET_12_1 <= s_INPUT_LINK_ARR( 15 )(95 downto 80);
+clusterET_12_2 <= s_INPUT_LINK_ARR( 15 )(111 downto 96);
+clusterET_12_3 <= s_INPUT_LINK_ARR( 15 )(127 downto 112);
+clusterET_13_0 <= s_INPUT_LINK_ARR( 15 )(143 downto 128);
+clusterET_13_1 <= s_INPUT_LINK_ARR( 15 )(159 downto 144);
+clusterET_13_2 <= s_INPUT_LINK_ARR( 15 )(175 downto 160);
+clusterET_13_3 <= s_INPUT_LINK_ARR( 15 )(191 downto 176);
+clusterET_14_0 <= s_INPUT_LINK_ARR( 16 )(15 downto 0);
+clusterET_14_1 <= s_INPUT_LINK_ARR( 16 )(31 downto 16);
+clusterET_14_2 <= s_INPUT_LINK_ARR( 16 )(47 downto 32);
+clusterET_14_3 <= s_INPUT_LINK_ARR( 16 )(63 downto 48);
+clusterET_15_0 <= s_INPUT_LINK_ARR( 16 )(79 downto 64);
+clusterET_15_1 <= s_INPUT_LINK_ARR( 16 )(95 downto 80);
+clusterET_15_2 <= s_INPUT_LINK_ARR( 16 )(111 downto 96);
+clusterET_15_3 <= s_INPUT_LINK_ARR( 16 )(127 downto 112);
+clusterET_16_0 <= s_INPUT_LINK_ARR( 16 )(143 downto 128);
+clusterET_16_1 <= s_INPUT_LINK_ARR( 16 )(159 downto 144);
+clusterET_16_2 <= s_INPUT_LINK_ARR( 16 )(175 downto 160);
+clusterET_16_3 <= s_INPUT_LINK_ARR( 16 )(191 downto 176);
 
 trackPT_0 <= s_INPUT_LINK_ARR( 17 )(15 downto 0);
 trackPT_1 <= s_INPUT_LINK_ARR( 17 )(31 downto 16);
