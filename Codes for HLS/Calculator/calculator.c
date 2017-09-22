@@ -6,8 +6,7 @@
 --PIPELINE-- max latency w/o this is 501, with this is 33, II changes nothing
 --DEPENDENCE-- no diff
 --DATAFLOW-- reverses effects of pipeline
--no LUT/LUT for mul
--no LUT/LUT for div
+-no LUT/LUT for mul,div-- LATENCY DECREASES FROM 58 TO 8!!!
 */
 #include <stdint.h>
 #include <stdio.h>
@@ -20,9 +19,13 @@ void calculate(double A[20],double B[20],double C[20],int select,double LUT_mul[
 	int i;
 	#pragma HLS PIPELINE
 	//Note: unable to load B array for select=6 warning goes away after ARRAY_PARTITION
+	//Note: unable to load parts of LUT arrays goes away by partitioning, (why does it ask to increase II)?
 	#pragma HLS ARRAY_PARTITION variable=A complete
 	#pragma HLS ARRAY_PARTITION variable=B complete
 	#pragma HLS ARRAY_PARTITION variable=C complete
+	#pragma HLS ARRAY_PARTITION variable=LUT_mul complete dim=0
+	#pragma HLS ARRAY_PARTITION variable=LUT_div complete dim=0
+	#pragma HLS ARRAY_PARTITION variable=LUT_div2 complete dim=0
 	//#pragma HLS DEPENDENCE
 	//#pragma HLS DATAFLOW
 	//#pragma HLS UNROLL-- made no diff, applied automatically?
@@ -55,8 +58,10 @@ void calculate(double A[20],double B[20],double C[20],int select,double LUT_mul[
 		}
 		case 4:
 		{
+			#pragma HLS UNROLL //these make no diff
 			for(i=0;i<20;i++)
 			{
+				#pragma HLS UNROLL
 				for(int j=0;j<20;j++)
 				{
 					if(LUT_mul[j][0]==A[i])
@@ -71,8 +76,10 @@ void calculate(double A[20],double B[20],double C[20],int select,double LUT_mul[
 		}
 		case 5:
 		{
+			#pragma HLS UNROLL
 			for(i=0;i<20;i++)
 			{
+				#pragma HLS UNROLL
 				for(int j=0;j<20;j++)
 				{
 					if(LUT_div[j][0]==A[i])
@@ -87,8 +94,10 @@ void calculate(double A[20],double B[20],double C[20],int select,double LUT_mul[
 		}
 		case 6:
 		{
+			#pragma HLS UNROLL
 			for(i=0;i<20;i++)
 			{
+				#pragma HLS UNROLL
 				for(int j=0;j<20;j++)
 				{
 					if(LUT_div2[j][0]==A[i])
