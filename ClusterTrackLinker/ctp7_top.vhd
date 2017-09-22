@@ -1510,7 +1510,7 @@ i_pattern_io_engine : entity work.pattern_io_engine
 -- Begin User_Code
 -----------------------------------------------------------------------------
      
-   getClusterTrackLinker_0 : getClusterTrackLinker_0
+   i_getClusterTrackLinker_0 : getClusterTrackLinker_0
        PORT MAP (
          ap_clk => ap_clk,
          ap_rst => ap_rst,
