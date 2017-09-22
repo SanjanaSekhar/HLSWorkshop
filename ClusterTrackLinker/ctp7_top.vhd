@@ -760,7 +760,7 @@ neutralClusterPhi_63 : OUT STD_LOGIC_VECTOR (15 downto 0);
 neutralClusterPhi_64 : OUT STD_LOGIC_VECTOR (15 downto 0);
 neutralClusterPhi_65 : OUT STD_LOGIC_VECTOR (15 downto 0);
 neutralClusterPhi_66 : OUT STD_LOGIC_VECTOR (15 downto 0);
-neutralClusterPhi_67 : OUT STD_LOGIC_VECTOR (15 downto 0);
+neutralClusterPhi_67 : OUT STD_LOGIC_VECTOR (15 downto 0)
 );
   END COMPONENT;  
 
