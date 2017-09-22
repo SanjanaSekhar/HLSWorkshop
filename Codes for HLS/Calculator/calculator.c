@@ -14,7 +14,7 @@
 #include <math.h>
 #include "calculator.h"
 
-void calculate(double A[20],double B[20],double C[20],int select)
+void calculate(double A[20],double B[20],double C[20],int select,double LUT_mul[20][3],double LUT_div[20][3],double LUT_div2[20][3])
 {
 	//calculate the sum/difference/product/quotient of 2 arrays based on select.
 	int i;
@@ -57,7 +57,15 @@ void calculate(double A[20],double B[20],double C[20],int select)
 		{
 			for(i=0;i<20;i++)
 			{
-				C[i]=A[i]*B[i];
+				for(int j=0;j<20;j++)
+				{
+					if(LUT_mul[j][0]==A[i])
+					{
+						if(LUT_mul[j][1]==B[i])
+							C[i]=LUT_mul[j][2];
+						else continue;
+					}
+				}
 			}
 			break;
 		}
@@ -65,7 +73,15 @@ void calculate(double A[20],double B[20],double C[20],int select)
 		{
 			for(i=0;i<20;i++)
 			{
-				C[i]=A[i]/B[i];
+				for(int j=0;j<20;j++)
+				{
+					if(LUT_div[j][0]==A[i])
+					{
+						if(LUT_div[j][1]==B[i])
+							C[i]=LUT_div[j][2];
+						else continue;
+					}
+				}
 			}
 			break;
 		}
@@ -73,7 +89,15 @@ void calculate(double A[20],double B[20],double C[20],int select)
 		{
 			for(i=0;i<20;i++)
 			{
-				C[i]=B[i]/A[i];			
+				for(int j=0;j<20;j++)
+				{
+					if(LUT_div2[j][0]==A[i])
+					{
+						if(LUT_div2[j][1]==B[i])
+							C[i]=LUT_div2[j][2];
+						else continue;
+					}
+				}
 			}
 			break;
 		}

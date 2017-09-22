@@ -2,8 +2,10 @@
 #define calculator_h
 #include <stdint.h>
 
-//extern uint16_t sqrts[20][2];
+extern double LUT_mul[20][3];
+extern double LUT_div[20][3];
+extern double LUT_div2[20][3];
 
-void calculate(double A[20],double B[20],double C[20],int select);
+void calculate(double A[20],double B[20],double C[20],int select,double LUT_mul[20][3],double LUT_div[20][3],double LUT_div2[20][3]);
 
 #endif
