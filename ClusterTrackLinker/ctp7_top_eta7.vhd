@@ -1,126 +1,206 @@
-Generated objects: 
-tEta	tPhi	cEta	cPhi	objectET
-15	3	3	1	447.703
-10	1	3	0	755.521
-14	3	1	1	450.227
-5	2	4	2	913.92
-14	1	4	1	672.422
-11	3	2	1	833.507
-15	0	4	3	972.108
-10	1	3	1	441.888
-3	0	1	2	457.315
-2	3	0	0	426.081
-12	3	4	3	506.839
-12	1	1	1	392.002
-4	0	3	0	597.932
-2	2	0	4	811.72
-8	0	1	3	53.7374
-11	3	3	3	749.505
-2	2	0	0	95.6305
-7	3	2	3	209.362
-2	3	1	4	53.1334
-16	0	4	0	128.354
-15	2	0	0	4.25733
-15	3	1	2	400.699
-7	2	0	2	592.757
-5	3	2	4	774.712
-10	0	3	4	765.009
-14	3	4	3	946.66
-16	2	2	0	924.144
-15	0	3	1	849.102
-3	2	1	1	643.958
-1	2	1	3	236.751
-16	1	2	3	522.432
-8	2	4	2	115.886
-14	1	0	1	344.087
-14	0	3	2	612.246
-5	2	0	3	493.02
-7	2	3	3	41.8042
-3	2	3	3	355.1
-12	0	4	3	335.927
-4	2	0	1	668.152
-11	0	0	1	897.564
-10	2	1	3	589.954
-5	0	4	0	295.012
-5	0	2	4	846.421
-13	2	0	3	940.066
-13	3	4	4	392.66
-13	2	1	4	208.23
-14	1	2	0	930.565
-14	1	2	4	280.211
-4	0	3	3	507.385
-10	1	4	3	142.257
-3	1	0	0	182.306
-5	3	4	3	368.733
-13	1	1	1	856.075
-10	1	0	0	673.984
-11	1	1	1	110.329
-7	3	2	1	93.245
-Total generated ET = 27910.6
-Total deposited ET = 8180
-Frok the cluster simulation: 
-tEta	tPhi	peakEta	peakPhi	largeClusterET	smallClusterET
-1	1	3	3	1	1
-1	2	1	3	251	229
-1	3	4	0	15	15
-2	0	4	4	2	2
-2	1	3	2	6	2
-2	2	0	4	849	760
-2	3	1	3	77	47
-3	0	1	2	455	451
-3	1	0	0	170	170
-3	2	2	2	1006	926
-4	0	3	1	1077	591
-4	2	0	1	659	641
-5	0	2	3	1085	811
-5	1	2	0	30	30
-5	2	3	2	1350	877
-5	3	3	4	1075	1049
-6	0	0	0	6	6
-6	2	2	2	54	0
-6	3	0	3	12	12
-Total card ET = 8180
-Frok the cluster-track linking simulation: 
-LinkedTracks: 
-trackEta	trackPhi	trackPT	trackLinkQuality
-6592	2792	447	0
-4479	872	755	0
-6000	2792	450	0
-2450	2094	913	0
-6254	1047	672	0
-4817	2792	833	0
-6676	523	972	0
-4479	1047	441	0
-1352	349	457	295
-845	2617	426	0
-5408	3141	506	0
-5155	1047	392	0
-1943	0	597	0
-845	2443	811	295
-3465	523	53	0
-4901	3141	749	0
-845	1745	95	0
-3127	3141	209	0
-929	3316	53	0
-7099	0	128	0
-Neutral Clusters: 
-clusterEta	clusterPhi	clusterET
-676	1396	1
-507	2268	229
-760	2617	15
-1183	698	2
-1098	1221	2
-929	3141	47
-1267	872	170
-1436	2094	926
-1943	174	591
-1690	1919	641
-2281	523	811
-2281	872	30
-2366	2094	877
-2366	3316	1049
-2535	0	6
-2535	3141	12
+-- vhd file for CTL
+-- modifications made by Sanjana Sekhar
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use ieee.numeric_std.all;
+use ieee.std_logic_misc.all;
+
+use work.ctp7_utils_pkg.all;
+
+
+library UNISIM;
+use UNISIM.VCOMPONENTS.all;
+
+entity ctp7_top is
+  generic (
+    C_DATE_CODE      : std_logic_vector (31 downto 0) := x"00000000";
+    C_GITHASH_CODE   : std_logic_vector (31 downto 0) := x"00000000";
+    C_GIT_REPO_DIRTY : std_logic                      := '0'
+    );
+  Port (
+  
+      clk_200_diff_in_clk_p : in std_logic;
+      clk_200_diff_in_clk_n : in std_logic;
+    
+      LEDs : out std_logic_vector (1 downto 0);
+    
+      LED_GREEN_o : out std_logic;
+      LED_RED_o   : out std_logic;
+      LED_BLUE_o  : out std_logic;
+    
+      axi_c2c_v7_to_zynq_data        : out std_logic_vector (16 downto 0);
+      axi_c2c_v7_to_zynq_clk         : out std_logic;
+      axi_c2c_zynq_to_v7_clk         : in  std_logic;
+      axi_c2c_zynq_to_v7_data        : in  std_logic_vector (16 downto 0);
+      axi_c2c_v7_to_zynq_link_status : out std_logic;
+      axi_c2c_zynq_to_v7_reset       : in  std_logic
+   );
+end ctp7_top;
+
+architecture ctp7_top_arch of ctp7_top is
+
+  component v7_bd is
+  port (
+
+    clk_200_diff_in_clk_n : in STD_LOGIC;
+    clk_200_diff_in_clk_p : in STD_LOGIC;
+    
+    axi_c2c_zynq_to_v7_clk : in STD_LOGIC;
+    axi_c2c_zynq_to_v7_data : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    axi_c2c_v7_to_zynq_link_status : out STD_LOGIC;
+    axi_c2c_v7_to_zynq_clk : out STD_LOGIC;
+    axi_c2c_v7_to_zynq_data : out STD_LOGIC_VECTOR ( 16 downto 0 );
+    axi_c2c_zynq_to_v7_reset : in STD_LOGIC;
+
+    BRAM_CTRL_REG_FILE_addr : out STD_LOGIC_VECTOR ( 16 downto 0 );
+    BRAM_CTRL_REG_FILE_clk : out STD_LOGIC;
+    BRAM_CTRL_REG_FILE_din : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    BRAM_CTRL_REG_FILE_dout : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    BRAM_CTRL_REG_FILE_en : out STD_LOGIC;
+    BRAM_CTRL_REG_FILE_rst : out STD_LOGIC;
+    BRAM_CTRL_REG_FILE_we : out STD_LOGIC_VECTOR ( 3 downto 0 );
+
+    BRAM_CTRL_INPUT_RAM_0_addr : out STD_LOGIC_VECTOR ( 16 downto 0 );
+    BRAM_CTRL_INPUT_RAM_0_clk : out STD_LOGIC;
+    BRAM_CTRL_INPUT_RAM_0_din : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    BRAM_CTRL_INPUT_RAM_0_dout : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    BRAM_CTRL_INPUT_RAM_0_en : out STD_LOGIC;
+    BRAM_CTRL_INPUT_RAM_0_rst : out STD_LOGIC;
+    BRAM_CTRL_INPUT_RAM_0_we : out STD_LOGIC_VECTOR ( 3 downto 0 );
+
+    BRAM_CTRL_INPUT_RAM_1_addr : out STD_LOGIC_VECTOR ( 16 downto 0 );
+    BRAM_CTRL_INPUT_RAM_1_clk : out STD_LOGIC;
+    BRAM_CTRL_INPUT_RAM_1_din : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    BRAM_CTRL_INPUT_RAM_1_dout : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    BRAM_CTRL_INPUT_RAM_1_en : out STD_LOGIC;
+    BRAM_CTRL_INPUT_RAM_1_rst : out STD_LOGIC;
+    BRAM_CTRL_INPUT_RAM_1_we : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    
+    BRAM_CTRL_INPUT_RAM_2_addr : out STD_LOGIC_VECTOR ( 16 downto 0 );
+    BRAM_CTRL_INPUT_RAM_2_clk : out STD_LOGIC;
+    BRAM_CTRL_INPUT_RAM_2_din : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    BRAM_CTRL_INPUT_RAM_2_dout : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    BRAM_CTRL_INPUT_RAM_2_en : out STD_LOGIC;
+    BRAM_CTRL_INPUT_RAM_2_rst : out STD_LOGIC;
+    BRAM_CTRL_INPUT_RAM_2_we : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    
+    BRAM_CTRL_OUTPUT_RAM_0_addr : out STD_LOGIC_VECTOR ( 16 downto 0 );
+    BRAM_CTRL_OUTPUT_RAM_0_clk : out STD_LOGIC;
+    BRAM_CTRL_OUTPUT_RAM_0_din : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    BRAM_CTRL_OUTPUT_RAM_0_dout : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    BRAM_CTRL_OUTPUT_RAM_0_en : out STD_LOGIC;
+    BRAM_CTRL_OUTPUT_RAM_0_rst : out STD_LOGIC;
+    BRAM_CTRL_OUTPUT_RAM_0_we : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    
+    BRAM_CTRL_OUTPUT_RAM_1_addr : out STD_LOGIC_VECTOR ( 16 downto 0 );
+    BRAM_CTRL_OUTPUT_RAM_1_clk : out STD_LOGIC;
+    BRAM_CTRL_OUTPUT_RAM_1_din : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    BRAM_CTRL_OUTPUT_RAM_1_dout : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    BRAM_CTRL_OUTPUT_RAM_1_en : out STD_LOGIC;
+    BRAM_CTRL_OUTPUT_RAM_1_rst : out STD_LOGIC;
+    BRAM_CTRL_OUTPUT_RAM_1_we : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    
+    clk_50mhz : out STD_LOGIC;
+    clk_240mhz : out STD_LOGIC    
+    
+  );
+  end component v7_bd;
+  
+COMPONENT ila_hls
+       
+       PORT (
+           clk : IN STD_LOGIC;
+       
+       
+       
+           probe0 : IN STD_LOGIC_VECTOR(0 DOWNTO 0); 
+           probe1 : IN STD_LOGIC_VECTOR(0 DOWNTO 0); 
+           probe2 : IN STD_LOGIC_VECTOR(0 DOWNTO 0); 
+           probe3 : IN STD_LOGIC_VECTOR(0 DOWNTO 0); 
+           probe4 : IN STD_LOGIC_VECTOR(0 DOWNTO 0); 
+           probe5 : IN STD_LOGIC_VECTOR(0 DOWNTO 0); 
+           probe6 : IN STD_LOGIC_VECTOR(191 DOWNTO 0);
+           probe7 : IN STD_LOGIC_VECTOR(191 DOWNTO 0)
+       );
+       END COMPONENT  ;
+  
+
+  signal s_clk_50  : std_logic;
+  signal s_clk_240        : std_logic;
+
+  signal BRAM_CTRL_REG_FILE_en   : std_logic;
+  signal BRAM_CTRL_REG_FILE_dout : std_logic_vector (31 downto 0);
+  signal BRAM_CTRL_REG_FILE_din  : std_logic_vector (31 downto 0);
+  signal BRAM_CTRL_REG_FILE_we   : std_logic_vector (3 downto 0);
+  signal BRAM_CTRL_REG_FILE_addr : std_logic_vector (16 downto 0);
+  signal BRAM_CTRL_REG_FILE_clk  : std_logic;
+  signal BRAM_CTRL_REG_FILE_rst  : std_logic;
+
+  signal BRAM_CTRL_INPUT_RAM_0_addr : std_logic_vector (16 downto 0);
+  signal BRAM_CTRL_INPUT_RAM_0_clk  : std_logic;
+  signal BRAM_CTRL_INPUT_RAM_0_din  : std_logic_vector (31 downto 0);
+  signal BRAM_CTRL_INPUT_RAM_0_dout : std_logic_vector (31 downto 0);
+  signal BRAM_CTRL_INPUT_RAM_0_en   : std_logic;
+  signal BRAM_CTRL_INPUT_RAM_0_rst  : std_logic;
+  signal BRAM_CTRL_INPUT_RAM_0_we   : std_logic_vector (3 downto 0);
+
+  signal BRAM_CTRL_INPUT_RAM_1_addr : std_logic_vector (16 downto 0);
+  signal BRAM_CTRL_INPUT_RAM_1_clk  : std_logic;
+  signal BRAM_CTRL_INPUT_RAM_1_din  : std_logic_vector (31 downto 0);
+  signal BRAM_CTRL_INPUT_RAM_1_dout : std_logic_vector (31 downto 0);
+  signal BRAM_CTRL_INPUT_RAM_1_en   : std_logic;
+  signal BRAM_CTRL_INPUT_RAM_1_rst  : std_logic;
+  signal BRAM_CTRL_INPUT_RAM_1_we   : std_logic_vector (3 downto 0);
+  
+  signal BRAM_CTRL_INPUT_RAM_2_addr : std_logic_vector (16 downto 0);
+  signal BRAM_CTRL_INPUT_RAM_2_clk  : std_logic;
+  signal BRAM_CTRL_INPUT_RAM_2_din  : std_logic_vector (31 downto 0);
+  signal BRAM_CTRL_INPUT_RAM_2_dout : std_logic_vector (31 downto 0);
+  signal BRAM_CTRL_INPUT_RAM_2_en   : std_logic;
+  signal BRAM_CTRL_INPUT_RAM_2_rst  : std_logic;
+  signal BRAM_CTRL_INPUT_RAM_2_we   : std_logic_vector (3 downto 0);
+
+  signal BRAM_CTRL_OUTPUT_RAM_0_addr : std_logic_vector (16 downto 0); 
+  signal BRAM_CTRL_OUTPUT_RAM_0_clk  : std_logic;
+  signal BRAM_CTRL_OUTPUT_RAM_0_din  : std_logic_vector (31 downto 0);
+  signal BRAM_CTRL_OUTPUT_RAM_0_dout : std_logic_vector (31 downto 0);
+  signal BRAM_CTRL_OUTPUT_RAM_0_en   : std_logic;
+  signal BRAM_CTRL_OUTPUT_RAM_0_rst  : std_logic;
+  signal BRAM_CTRL_OUTPUT_RAM_0_we   : std_logic_vector (3 downto 0);
+
+  signal BRAM_CTRL_OUTPUT_RAM_1_addr : std_logic_vector (16 downto 0);
+  signal BRAM_CTRL_OUTPUT_RAM_1_clk  : std_logic;
+  signal BRAM_CTRL_OUTPUT_RAM_1_din  : std_logic_vector (31 downto 0);
+  signal BRAM_CTRL_OUTPUT_RAM_1_dout : std_logic_vector (31 downto 0);
+  signal BRAM_CTRL_OUTPUT_RAM_1_en   : std_logic;
+  signal BRAM_CTRL_OUTPUT_RAM_1_rst  : std_logic;
+  signal BRAM_CTRL_OUTPUT_RAM_1_we   : std_logic_vector (3 downto 0);
+
+  signal s_LED_FP : std_logic_vector(31 downto 0);
+  
+  signal s_pattern_start_request: std_logic;
+  signal s_algo_latency :  std_logic_vector ( 15 downto 0 );
+  
+  signal s_pattern_start, s_pattern_start_s1, s_pattern_start_s2:  std_logic;
+  
+  signal s_INPUT_RAM_start:  std_logic;
+  signal s_OUTPUT_RAM_start:  std_logic;
+  
+  signal s_INPUT_link_arr :  t_slv_arr_192(66 downto 0) := (others => (others => '0'));
+  signal s_OUTPUT_link_arr:   t_slv_arr_192(47 downto 0) := (others => (others => '0'));
+  signal s_cfg_reg : t_slv_arr_32(31 downto 0);
+
+-----------------------------------------------------------------------------
+-- Begin User_Code
+-----------------------------------------------------------------------------
+ COMPONENT getClusterTrackLinker_0
+    PORT (
+      ap_clk : IN STD_LOGIC;
+      ap_rst : IN STD_LOGIC;
+      ap_start : IN STD_LOGIC;
+      ap_done : OUT STD_LOGIC;
+      ap_idle : OUT STD_LOGIC;
+      ap_ready : OUT STD_LOGIC;
 peakEta_0_0 : IN STD_LOGIC_VECTOR (15 downto 0);
 peakEta_0_1 : IN STD_LOGIC_VECTOR (15 downto 0);
 peakEta_0_2 : IN STD_LOGIC_VECTOR (15 downto 0);
@@ -149,6 +229,7 @@ peakEta_6_0 : IN STD_LOGIC_VECTOR (15 downto 0);
 peakEta_6_1 : IN STD_LOGIC_VECTOR (15 downto 0);
 peakEta_6_2 : IN STD_LOGIC_VECTOR (15 downto 0);
 peakEta_6_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+
 
 peakPhi_0_0 : IN STD_LOGIC_VECTOR (15 downto 0);
 peakPhi_0_1 : IN STD_LOGIC_VECTOR (15 downto 0);
@@ -179,34 +260,35 @@ peakPhi_6_1 : IN STD_LOGIC_VECTOR (15 downto 0);
 peakPhi_6_2 : IN STD_LOGIC_VECTOR (15 downto 0);
 peakPhi_6_3 : IN STD_LOGIC_VECTOR (15 downto 0);
 
-smallClusterET_0_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_0_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_0_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_0_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_1_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_1_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_1_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_1_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_2_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_2_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_2_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_2_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_3_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_3_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_3_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_3_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_4_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_4_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_4_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_4_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_5_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_5_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_5_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_5_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_6_0 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_6_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_6_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-smallClusterET_6_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+
+clusterET_0_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_0_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_0_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_0_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_1_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_1_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_1_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_1_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_2_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_2_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_2_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_2_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_3_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_3_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_3_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_3_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_4_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_4_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_4_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_4_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_5_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_5_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_5_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_5_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_6_0 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_6_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_6_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+clusterET_6_3 : IN STD_LOGIC_VECTOR (15 downto 0);
 
 trackPT_0 : IN STD_LOGIC_VECTOR (15 downto 0);
 trackPT_1 : IN STD_LOGIC_VECTOR (15 downto 0);
@@ -413,6 +495,9 @@ neutralClusterEta_25 : OUT STD_LOGIC_VECTOR (15 downto 0);
 neutralClusterEta_26 : OUT STD_LOGIC_VECTOR (15 downto 0);
 neutralClusterEta_27 : OUT STD_LOGIC_VECTOR (15 downto 0);
 
+
+
+
 neutralClusterPhi_0 : OUT STD_LOGIC_VECTOR (15 downto 0);
 neutralClusterPhi_1 : OUT STD_LOGIC_VECTOR (15 downto 0);
 neutralClusterPhi_2 : OUT STD_LOGIC_VECTOR (15 downto 0);
@@ -440,7 +525,18 @@ neutralClusterPhi_23 : OUT STD_LOGIC_VECTOR (15 downto 0);
 neutralClusterPhi_24 : OUT STD_LOGIC_VECTOR (15 downto 0);
 neutralClusterPhi_25 : OUT STD_LOGIC_VECTOR (15 downto 0);
 neutralClusterPhi_26 : OUT STD_LOGIC_VECTOR (15 downto 0);
-neutralClusterPhi_27 : OUT STD_LOGIC_VECTOR (15 downto 0);
+neutralClusterPhi_27 : OUT STD_LOGIC_VECTOR (15 downto 0)
+);
+  END COMPONENT;  
+
+-- HLS Algo Control/Handshake Interface
+      signal ap_clk :  STD_LOGIC;
+      signal ap_rst :  STD_LOGIC;
+      signal ap_start :  STD_LOGIC;
+      signal ap_done :  STD_LOGIC;
+      signal ap_idle :  STD_LOGIC;
+      signal ap_ready :  STD_LOGIC;
+
 signal peakEta_0_0 : STD_LOGIC_VECTOR (15 downto 0);
 signal peakEta_0_1 : STD_LOGIC_VECTOR (15 downto 0);
 signal peakEta_0_2 : STD_LOGIC_VECTOR (15 downto 0);
@@ -499,34 +595,36 @@ signal peakPhi_6_1 : STD_LOGIC_VECTOR (15 downto 0);
 signal peakPhi_6_2 : STD_LOGIC_VECTOR (15 downto 0);
 signal peakPhi_6_3 : STD_LOGIC_VECTOR (15 downto 0);
 
-signal smallClusterET_0_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_0_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_0_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_0_3 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_1_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_1_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_1_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_1_3 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_2_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_2_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_2_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_2_3 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_3_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_3_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_3_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_3_3 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_4_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_4_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_4_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_4_3 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_5_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_5_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_5_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_5_3 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_6_0 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_6_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_6_2 : STD_LOGIC_VECTOR (15 downto 0);
-signal smallClusterET_6_3 : STD_LOGIC_VECTOR (15 downto 0);
+
+signal clusterET_0_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_0_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_0_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_0_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_1_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_1_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_1_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_1_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_2_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_2_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_2_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_2_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_3_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_3_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_3_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_3_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_4_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_4_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_4_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_4_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_5_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_5_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_5_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_5_3 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_6_0 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_6_1 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_6_2 : STD_LOGIC_VECTOR (15 downto 0);
+signal clusterET_6_3 : STD_LOGIC_VECTOR (15 downto 0);
+
 
 signal trackPT_0 : STD_LOGIC_VECTOR (15 downto 0);
 signal trackPT_1 : STD_LOGIC_VECTOR (15 downto 0);
@@ -704,6 +802,7 @@ signal neutralClusterET_25 : STD_LOGIC_VECTOR (15 downto 0);
 signal neutralClusterET_26 : STD_LOGIC_VECTOR (15 downto 0);
 signal neutralClusterET_27 : STD_LOGIC_VECTOR (15 downto 0);
 
+
 signal neutralClusterEta_0 : STD_LOGIC_VECTOR (15 downto 0);
 signal neutralClusterEta_1 : STD_LOGIC_VECTOR (15 downto 0);
 signal neutralClusterEta_2 : STD_LOGIC_VECTOR (15 downto 0);
@@ -733,6 +832,7 @@ signal neutralClusterEta_25 : STD_LOGIC_VECTOR (15 downto 0);
 signal neutralClusterEta_26 : STD_LOGIC_VECTOR (15 downto 0);
 signal neutralClusterEta_27 : STD_LOGIC_VECTOR (15 downto 0);
 
+
 signal neutralClusterPhi_0 : STD_LOGIC_VECTOR (15 downto 0);
 signal neutralClusterPhi_1 : STD_LOGIC_VECTOR (15 downto 0);
 signal neutralClusterPhi_2 : STD_LOGIC_VECTOR (15 downto 0);
@@ -761,6 +861,195 @@ signal neutralClusterPhi_24 : STD_LOGIC_VECTOR (15 downto 0);
 signal neutralClusterPhi_25 : STD_LOGIC_VECTOR (15 downto 0);
 signal neutralClusterPhi_26 : STD_LOGIC_VECTOR (15 downto 0);
 signal neutralClusterPhi_27 : STD_LOGIC_VECTOR (15 downto 0);
+
+
+  
+ 
+-----------------------------------------------------------------------------
+-- End User_Code
+-----------------------------------------------------------------------------
+           
+begin
+
+    LED_GREEN_o <= s_LED_FP(0);
+    LED_RED_o   <= s_LED_FP(1);
+    LED_BLUE_o  <= s_LED_FP(2);
+
+  i_v7_bd : v7_bd
+    port map (
+    
+        axi_c2c_v7_to_zynq_clk               => axi_c2c_v7_to_zynq_clk,
+        axi_c2c_v7_to_zynq_data(16 downto 0) => axi_c2c_v7_to_zynq_data(16 downto 0),
+        axi_c2c_v7_to_zynq_link_status       => axi_c2c_v7_to_zynq_link_status,
+        axi_c2c_zynq_to_v7_clk               => axi_c2c_zynq_to_v7_clk,
+        axi_c2c_zynq_to_v7_data(16 downto 0) => axi_c2c_zynq_to_v7_data(16 downto 0),
+        axi_c2c_zynq_to_v7_reset             => axi_c2c_zynq_to_v7_reset,
+    
+        clk_200_diff_in_clk_n => clk_200_diff_in_clk_n,
+        clk_200_diff_in_clk_p => clk_200_diff_in_clk_p,
+        
+        BRAM_CTRL_REG_FILE_addr => BRAM_CTRL_REG_FILE_addr,
+        BRAM_CTRL_REG_FILE_clk  => BRAM_CTRL_REG_FILE_clk,
+        BRAM_CTRL_REG_FILE_din  => BRAM_CTRL_REG_FILE_din,
+        BRAM_CTRL_REG_FILE_dout => BRAM_CTRL_REG_FILE_dout,
+        BRAM_CTRL_REG_FILE_en   => BRAM_CTRL_REG_FILE_en,
+        BRAM_CTRL_REG_FILE_rst  => BRAM_CTRL_REG_FILE_rst,
+        BRAM_CTRL_REG_FILE_we   => BRAM_CTRL_REG_FILE_we,
+
+        BRAM_CTRL_INPUT_RAM_0_addr => BRAM_CTRL_INPUT_RAM_0_addr,
+        BRAM_CTRL_INPUT_RAM_0_clk  => BRAM_CTRL_INPUT_RAM_0_clk,
+        BRAM_CTRL_INPUT_RAM_0_din  => BRAM_CTRL_INPUT_RAM_0_din,
+        BRAM_CTRL_INPUT_RAM_0_dout => BRAM_CTRL_INPUT_RAM_0_dout,
+        BRAM_CTRL_INPUT_RAM_0_en   => BRAM_CTRL_INPUT_RAM_0_en,
+        BRAM_CTRL_INPUT_RAM_0_rst  => BRAM_CTRL_INPUT_RAM_0_rst,
+        BRAM_CTRL_INPUT_RAM_0_we   => BRAM_CTRL_INPUT_RAM_0_we,
+
+        BRAM_CTRL_INPUT_RAM_1_addr => BRAM_CTRL_INPUT_RAM_1_addr,
+        BRAM_CTRL_INPUT_RAM_1_clk  => BRAM_CTRL_INPUT_RAM_1_clk,
+        BRAM_CTRL_INPUT_RAM_1_din  => BRAM_CTRL_INPUT_RAM_1_din,
+        BRAM_CTRL_INPUT_RAM_1_dout => BRAM_CTRL_INPUT_RAM_1_dout,
+        BRAM_CTRL_INPUT_RAM_1_en   => BRAM_CTRL_INPUT_RAM_1_en,
+        BRAM_CTRL_INPUT_RAM_1_rst  => BRAM_CTRL_INPUT_RAM_1_rst,
+        BRAM_CTRL_INPUT_RAM_1_we   => BRAM_CTRL_INPUT_RAM_1_we,
+        
+        BRAM_CTRL_INPUT_RAM_2_addr => BRAM_CTRL_INPUT_RAM_2_addr,
+        BRAM_CTRL_INPUT_RAM_2_clk  => BRAM_CTRL_INPUT_RAM_2_clk,
+        BRAM_CTRL_INPUT_RAM_2_din  => BRAM_CTRL_INPUT_RAM_2_din,
+        BRAM_CTRL_INPUT_RAM_2_dout => BRAM_CTRL_INPUT_RAM_2_dout,
+        BRAM_CTRL_INPUT_RAM_2_en   => BRAM_CTRL_INPUT_RAM_2_en,
+        BRAM_CTRL_INPUT_RAM_2_rst  => BRAM_CTRL_INPUT_RAM_2_rst,
+        BRAM_CTRL_INPUT_RAM_2_we   => BRAM_CTRL_INPUT_RAM_2_we,
+        
+        BRAM_CTRL_OUTPUT_RAM_0_addr => BRAM_CTRL_OUTPUT_RAM_0_addr,
+        BRAM_CTRL_OUTPUT_RAM_0_clk  => BRAM_CTRL_OUTPUT_RAM_0_clk,
+        BRAM_CTRL_OUTPUT_RAM_0_din  => BRAM_CTRL_OUTPUT_RAM_0_din,
+        BRAM_CTRL_OUTPUT_RAM_0_dout => BRAM_CTRL_OUTPUT_RAM_0_dout,
+        BRAM_CTRL_OUTPUT_RAM_0_en   => BRAM_CTRL_OUTPUT_RAM_0_en,
+        BRAM_CTRL_OUTPUT_RAM_0_rst  => BRAM_CTRL_OUTPUT_RAM_0_rst,
+        BRAM_CTRL_OUTPUT_RAM_0_we   => BRAM_CTRL_OUTPUT_RAM_0_we,
+ 
+        BRAM_CTRL_OUTPUT_RAM_1_addr => BRAM_CTRL_OUTPUT_RAM_1_addr,
+        BRAM_CTRL_OUTPUT_RAM_1_clk  => BRAM_CTRL_OUTPUT_RAM_1_clk,
+        BRAM_CTRL_OUTPUT_RAM_1_din  => BRAM_CTRL_OUTPUT_RAM_1_din,
+        BRAM_CTRL_OUTPUT_RAM_1_dout => BRAM_CTRL_OUTPUT_RAM_1_dout,
+        BRAM_CTRL_OUTPUT_RAM_1_en   => BRAM_CTRL_OUTPUT_RAM_1_en,
+        BRAM_CTRL_OUTPUT_RAM_1_rst  => BRAM_CTRL_OUTPUT_RAM_1_rst,
+        BRAM_CTRL_OUTPUT_RAM_1_we   => BRAM_CTRL_OUTPUT_RAM_1_we,        
+        
+        clk_50mhz  => s_clk_50,
+        clk_240mhz => s_clk_240
+      );
+      
+  i_register_file : entity work.register_file
+        generic map(
+          C_DATE_CODE      => C_DATE_CODE,
+          C_GITHASH_CODE   => C_GITHASH_CODE,
+          C_GIT_REPO_DIRTY => C_GIT_REPO_DIRTY
+          )
+        port map (
+    
+          LED_FP_o => s_led_FP,
+   
+          BRAM_CTRL_REG_FILE_addr => BRAM_CTRL_REG_FILE_addr,
+          BRAM_CTRL_REG_FILE_clk  => BRAM_CTRL_REG_FILE_clk,
+          BRAM_CTRL_REG_FILE_din  => BRAM_CTRL_REG_FILE_din,
+          BRAM_CTRL_REG_FILE_dout => BRAM_CTRL_REG_FILE_dout,
+          BRAM_CTRL_REG_FILE_en   => BRAM_CTRL_REG_FILE_en,
+          BRAM_CTRL_REG_FILE_rst  => BRAM_CTRL_REG_FILE_rst,
+          BRAM_CTRL_REG_FILE_we   => BRAM_CTRL_REG_FILE_we,
+          
+          pattern_start_o => s_pattern_start,
+          cfg_reg_o  => s_cfg_reg
+
+          );   
+          
+s_pattern_start_s1 <= s_pattern_start when rising_edge(s_clk_240);
+s_pattern_start_s2 <= s_pattern_start_s1 when rising_edge(s_clk_240);
+
+          
+i_pattern_io_engine : entity work.pattern_io_engine 
+    Port map( 
+    
+        clk_240_i => s_clk_240,
+        
+        pattern_restart_i  => s_pattern_start_s2,
+        
+        algo_rst_o  => ap_rst,
+        algo_start_o  => ap_start,
+        algo_done_i  => ap_done,
+        
+        INPUT_link_arr_o  => s_INPUT_link_arr,
+        OUTPUT_link_arr_i => s_OUTPUT_link_arr,
+        
+        BRAM_CTRL_INPUT_RAM_0_addr => BRAM_CTRL_INPUT_RAM_0_addr,
+        BRAM_CTRL_INPUT_RAM_0_clk  => BRAM_CTRL_INPUT_RAM_0_clk,
+        BRAM_CTRL_INPUT_RAM_0_din  => BRAM_CTRL_INPUT_RAM_0_din,
+        BRAM_CTRL_INPUT_RAM_0_dout => BRAM_CTRL_INPUT_RAM_0_dout,
+        BRAM_CTRL_INPUT_RAM_0_en   => BRAM_CTRL_INPUT_RAM_0_en,
+        BRAM_CTRL_INPUT_RAM_0_rst  => BRAM_CTRL_INPUT_RAM_0_rst,
+        BRAM_CTRL_INPUT_RAM_0_we   => BRAM_CTRL_INPUT_RAM_0_we,
+
+        BRAM_CTRL_INPUT_RAM_1_addr => BRAM_CTRL_INPUT_RAM_1_addr,
+        BRAM_CTRL_INPUT_RAM_1_clk  => BRAM_CTRL_INPUT_RAM_1_clk,
+        BRAM_CTRL_INPUT_RAM_1_din  => BRAM_CTRL_INPUT_RAM_1_din,
+        BRAM_CTRL_INPUT_RAM_1_dout => BRAM_CTRL_INPUT_RAM_1_dout,
+        BRAM_CTRL_INPUT_RAM_1_en   => BRAM_CTRL_INPUT_RAM_1_en,
+        BRAM_CTRL_INPUT_RAM_1_rst  => BRAM_CTRL_INPUT_RAM_1_rst,
+        BRAM_CTRL_INPUT_RAM_1_we   => BRAM_CTRL_INPUT_RAM_1_we,
+        
+        BRAM_CTRL_INPUT_RAM_2_addr => BRAM_CTRL_INPUT_RAM_2_addr,
+        BRAM_CTRL_INPUT_RAM_2_clk  => BRAM_CTRL_INPUT_RAM_2_clk,
+        BRAM_CTRL_INPUT_RAM_2_din  => BRAM_CTRL_INPUT_RAM_2_din,
+        BRAM_CTRL_INPUT_RAM_2_dout => BRAM_CTRL_INPUT_RAM_2_dout,
+        BRAM_CTRL_INPUT_RAM_2_en   => BRAM_CTRL_INPUT_RAM_2_en,
+        BRAM_CTRL_INPUT_RAM_2_rst  => BRAM_CTRL_INPUT_RAM_2_rst,
+        BRAM_CTRL_INPUT_RAM_2_we   => BRAM_CTRL_INPUT_RAM_2_we,
+        
+        BRAM_CTRL_OUTPUT_RAM_0_addr => BRAM_CTRL_OUTPUT_RAM_0_addr,
+        BRAM_CTRL_OUTPUT_RAM_0_clk  => BRAM_CTRL_OUTPUT_RAM_0_clk,
+        BRAM_CTRL_OUTPUT_RAM_0_din  => BRAM_CTRL_OUTPUT_RAM_0_din,
+        BRAM_CTRL_OUTPUT_RAM_0_dout => BRAM_CTRL_OUTPUT_RAM_0_dout,
+        BRAM_CTRL_OUTPUT_RAM_0_en   => BRAM_CTRL_OUTPUT_RAM_0_en,
+        BRAM_CTRL_OUTPUT_RAM_0_rst  => BRAM_CTRL_OUTPUT_RAM_0_rst,
+        BRAM_CTRL_OUTPUT_RAM_0_we   => BRAM_CTRL_OUTPUT_RAM_0_we,
+ 
+        BRAM_CTRL_OUTPUT_RAM_1_addr => BRAM_CTRL_OUTPUT_RAM_1_addr,
+        BRAM_CTRL_OUTPUT_RAM_1_clk  => BRAM_CTRL_OUTPUT_RAM_1_clk,
+        BRAM_CTRL_OUTPUT_RAM_1_din  => BRAM_CTRL_OUTPUT_RAM_1_din,
+        BRAM_CTRL_OUTPUT_RAM_1_dout => BRAM_CTRL_OUTPUT_RAM_1_dout,
+        BRAM_CTRL_OUTPUT_RAM_1_en   => BRAM_CTRL_OUTPUT_RAM_1_en,
+        BRAM_CTRL_OUTPUT_RAM_1_rst  => BRAM_CTRL_OUTPUT_RAM_1_rst,
+        BRAM_CTRL_OUTPUT_RAM_1_we   => BRAM_CTRL_OUTPUT_RAM_1_we
+     );          
+     
+     ap_clk <= s_clk_240; 
+     
+     i_ila_hls : ila_hls
+     PORT MAP (
+         clk => s_clk_240,     
+         probe0(0) => ap_rst, 
+         probe1(0) => ap_rst, 
+         probe2(0) => ap_start, 
+         probe3(0) => ap_done, 
+         probe4(0) => ap_idle, 
+         probe5(0) => ap_ready, 
+         probe6 => s_INPUT_link_arr(0),
+         probe7 => s_OUTPUT_link_arr(0)
+     );
+     
+-----------------------------------------------------------------------------
+-- Begin User_Code
+-----------------------------------------------------------------------------
+     
+   i_getClusterTrackLinker_0 : getClusterTrackLinker_0
+       PORT MAP (
+         ap_clk => ap_clk,
+         ap_rst => ap_rst,
+         ap_start => ap_start,
+         ap_done => ap_done,
+         ap_idle => ap_idle,
+         ap_ready => ap_ready,
+
 peakEta_0_0 => peakEta_0_0,
 peakEta_0_1 => peakEta_0_1,
 peakEta_0_2 => peakEta_0_2,
@@ -789,6 +1078,7 @@ peakEta_6_0 => peakEta_6_0,
 peakEta_6_1 => peakEta_6_1,
 peakEta_6_2 => peakEta_6_2,
 peakEta_6_3 => peakEta_6_3,
+
 
 peakPhi_0_0 => peakPhi_0_0,
 peakPhi_0_1 => peakPhi_0_1,
@@ -819,34 +1109,36 @@ peakPhi_6_1 => peakPhi_6_1,
 peakPhi_6_2 => peakPhi_6_2,
 peakPhi_6_3 => peakPhi_6_3,
 
-smallClusterET_0_0 => smallClusterET_0_0,
-smallClusterET_0_1 => smallClusterET_0_1,
-smallClusterET_0_2 => smallClusterET_0_2,
-smallClusterET_0_3 => smallClusterET_0_3,
-smallClusterET_1_0 => smallClusterET_1_0,
-smallClusterET_1_1 => smallClusterET_1_1,
-smallClusterET_1_2 => smallClusterET_1_2,
-smallClusterET_1_3 => smallClusterET_1_3,
-smallClusterET_2_0 => smallClusterET_2_0,
-smallClusterET_2_1 => smallClusterET_2_1,
-smallClusterET_2_2 => smallClusterET_2_2,
-smallClusterET_2_3 => smallClusterET_2_3,
-smallClusterET_3_0 => smallClusterET_3_0,
-smallClusterET_3_1 => smallClusterET_3_1,
-smallClusterET_3_2 => smallClusterET_3_2,
-smallClusterET_3_3 => smallClusterET_3_3,
-smallClusterET_4_0 => smallClusterET_4_0,
-smallClusterET_4_1 => smallClusterET_4_1,
-smallClusterET_4_2 => smallClusterET_4_2,
-smallClusterET_4_3 => smallClusterET_4_3,
-smallClusterET_5_0 => smallClusterET_5_0,
-smallClusterET_5_1 => smallClusterET_5_1,
-smallClusterET_5_2 => smallClusterET_5_2,
-smallClusterET_5_3 => smallClusterET_5_3,
-smallClusterET_6_0 => smallClusterET_6_0,
-smallClusterET_6_1 => smallClusterET_6_1,
-smallClusterET_6_2 => smallClusterET_6_2,
-smallClusterET_6_3 => smallClusterET_6_3,
+
+clusterET_0_0 => clusterET_0_0,
+clusterET_0_1 => clusterET_0_1,
+clusterET_0_2 => clusterET_0_2,
+clusterET_0_3 => clusterET_0_3,
+clusterET_1_0 => clusterET_1_0,
+clusterET_1_1 => clusterET_1_1,
+clusterET_1_2 => clusterET_1_2,
+clusterET_1_3 => clusterET_1_3,
+clusterET_2_0 => clusterET_2_0,
+clusterET_2_1 => clusterET_2_1,
+clusterET_2_2 => clusterET_2_2,
+clusterET_2_3 => clusterET_2_3,
+clusterET_3_0 => clusterET_3_0,
+clusterET_3_1 => clusterET_3_1,
+clusterET_3_2 => clusterET_3_2,
+clusterET_3_3 => clusterET_3_3,
+clusterET_4_0 => clusterET_4_0,
+clusterET_4_1 => clusterET_4_1,
+clusterET_4_2 => clusterET_4_2,
+clusterET_4_3 => clusterET_4_3,
+clusterET_5_0 => clusterET_5_0,
+clusterET_5_1 => clusterET_5_1,
+clusterET_5_2 => clusterET_5_2,
+clusterET_5_3 => clusterET_5_3,
+clusterET_6_0 => clusterET_6_0,
+clusterET_6_1 => clusterET_6_1,
+clusterET_6_2 => clusterET_6_2,
+clusterET_6_3 => clusterET_6_3,
+
 
 trackPT_0 => trackPT_0,
 trackPT_1 => trackPT_1,
@@ -1024,6 +1316,8 @@ neutralClusterET_25 => neutralClusterET_25,
 neutralClusterET_26 => neutralClusterET_26,
 neutralClusterET_27 => neutralClusterET_27,
 
+
+
 neutralClusterEta_0 => neutralClusterEta_0,
 neutralClusterEta_1 => neutralClusterEta_1,
 neutralClusterEta_2 => neutralClusterEta_2,
@@ -1053,6 +1347,8 @@ neutralClusterEta_25 => neutralClusterEta_25,
 neutralClusterEta_26 => neutralClusterEta_26,
 neutralClusterEta_27 => neutralClusterEta_27,
 
+
+
 neutralClusterPhi_0 => neutralClusterPhi_0,
 neutralClusterPhi_1 => neutralClusterPhi_1,
 neutralClusterPhi_2 => neutralClusterPhi_2,
@@ -1080,7 +1376,15 @@ neutralClusterPhi_23 => neutralClusterPhi_23,
 neutralClusterPhi_24 => neutralClusterPhi_24,
 neutralClusterPhi_25 => neutralClusterPhi_25,
 neutralClusterPhi_26 => neutralClusterPhi_26,
-neutralClusterPhi_27 => neutralClusterPhi_27,
+neutralClusterPhi_27 => neutralClusterPhi_27
+       );
+
+-----------------------------------------------------------------------------
+-- Configuration registers              
+   
+-----------------------------------------------------------------------------
+
+-- Input Links
 peakEta_0_0 <= s_INPUT_LINK_ARR( 0 )(15 downto 0);
 peakEta_0_1 <= s_INPUT_LINK_ARR( 0 )(31 downto 16);
 peakEta_0_2 <= s_INPUT_LINK_ARR( 0 )(47 downto 32);
@@ -1401,3 +1705,11 @@ s_OUTPUT_LINK_ARR( 13 )(79 downto 64) <= neutralClusterPhi_24 ;
 s_OUTPUT_LINK_ARR( 13 )(95 downto 80) <= neutralClusterPhi_25 ;
 s_OUTPUT_LINK_ARR( 13 )(111 downto 96) <= neutralClusterPhi_26 ;
 s_OUTPUT_LINK_ARR( 13 )(127 downto 112) <= neutralClusterPhi_27 ;
+
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+-- End User_Code
+-----------------------------------------------------------------------------
+
+end ctp7_top_arch;
