@@ -1,6 +1,6 @@
 #include "ClusterFinder.hh"
 #include "ClusterTrackLinker.hh"
-
+#include <stdio.h>
 bool getClusterTrackLinker(uint16_t clusterET[NCaloLayer1Eta][NCaloLayer1Phi],
 			   uint16_t peakEta[NCaloLayer1Eta][NCaloLayer1Phi], 
 			   uint16_t peakPhi[NCaloLayer1Eta][NCaloLayer1Phi], 
@@ -32,7 +32,45 @@ bool getClusterTrackLinker(uint16_t clusterET[NCaloLayer1Eta][NCaloLayer1Phi],
   uint16_t clusterPhi[MaxNeutralClusters];
 #pragma HLS ARRAY_PARTITION variable=clusterEta complete dim=0
 #pragma HLS ARRAY_PARTITION variable=clusterPhi complete dim=0
-
+  printf("==== peakEta ====\n");
+  for(int i=0;i<NCaloLayer1Eta;i++)
+  {
+    for(int j=0;j<NCaloLayer1Phi;j++)
+    {
+      printf("%d,%d: %04x\n",i,j,peakEta[i][j]);
+    }
+  }
+  printf("==== peakPhi ====\n");
+  for(int i=0;i<NCaloLayer1Eta;i++)
+  {
+    for(int j=0;j<NCaloLayer1Phi;j++)
+    {
+      printf("%d,%d: %04x\n",i,j,peakPhi[i][j]);
+    }
+  }
+  printf("==== clusterET ====\n");
+  for(int i=0;i<NCaloLayer1Eta;i++)
+  {
+    for(int j=0;j<NCaloLayer1Phi;j++)
+    {
+      printf("%d,%d: %04x\n",i,j,clusterET[i][j]);
+    }
+  }
+    printf("==== trackPT ====\n");
+    for(int j=0;j<MaxTracksInCard;j++)
+    {
+      printf("%d: %04x\n",j,trackPT[j]);
+    }
+    printf("==== trackEta ====\n");
+    for(int j=0;j<MaxTracksInCard;j++)
+    {
+      printf("%d: %04x\n",j,trackEta[j]);
+    }
+    printf("==== trackPhi ====\n");
+    for(int j=0;j<MaxTracksInCard;j++)
+    {
+      printf("%d: %04x\n",j,trackPhi[j]);
+    }
   getClusterPositions(clusterEta,clusterPhi,peakPhi,peakEta);
 
   for(int tEta = 0; tEta < NCaloLayer1Eta; tEta++) {

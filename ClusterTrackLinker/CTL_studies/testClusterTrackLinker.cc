@@ -615,7 +615,7 @@ int main(int argc, char **argv) {
     }
 
   }
-  WriteLinkMapCTL(
+ /* WriteLinkMapCTL(
   peakEta, 
   peakPhi,
   smallClusterET,
@@ -630,5 +630,5 @@ int main(int argc, char **argv) {
   neutralClusterEta,
   neutralClusterPhi);
   return 0;
-}
+*/}
 
