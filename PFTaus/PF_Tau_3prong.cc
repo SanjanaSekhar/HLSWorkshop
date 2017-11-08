@@ -366,17 +366,18 @@ void tau_alg(pf_charged_t pf_charged[N_TRACKS], cluster_t neutral_clusters[N_CLU
  }
 
 //modified three prong code to account for check of whether a pf_cand is a charged hadron or not
- void tau_three_prong_alg(pf_charged_t pf_charged[N_TRACKS], pf_charged_t three_prong_tau_cand[3], pftau_t tau_cands_O[4], ap_int<11> three_prong_seed, ap_int<11> three_prong_delta_r)
+ void tau_three_prong_alg(pf_charged_t pf_charged[N_TRACKS], pf_charged_t three_prong_tau_cand[3], pftau_t tau_cands[4], ap_int<11> three_prong_seed, ap_int<11> three_prong_delta_r)
  {
-#pragma HLS ARRAY_PARTITION variable=pf_charged complete
-#pragma HLS ARRAY_PARTITION variable=tau_cands complete 
-#pragma HLS ARRAY_PARTITION variable=three_prong_tau_cand complete
+#pragma HLS ARRAY_PARTITION variable=pf_charged complete dim=0
+#pragma HLS ARRAY_PARTITION variable=tau_cands complete dim=0
+#pragma HLS ARRAY_PARTITION variable=three_prong_tau_cand complete dim=0
 #pragma HLS PIPELINE II=6
 #pragma HLS DATA_PACK variable=pf_charged
 #pragma HLS DATA_PACK variable=three_prong_tau_cand
-#pragma HLS DATA_PACK variable=tau_cands
+//#pragma HLS DATA_PACK variable=tau_cands
 	 pf_charged_t temphadron;
 	 pf_charged_t seedhadron;
+	 pf_charged_t second_prong_hadron,third_prong_hadron;
 #pragma HLS DATA_PACK variable=temphadron
 #pragma HLS DATA_PACK variable=seedhadron
 	 int n_found_prongs;
@@ -409,14 +410,14 @@ void tau_alg(pf_charged_t pf_charged[N_TRACKS], cluster_t neutral_clusters[N_CLU
 				  if(n_found_prongs==2)
 				  {
 				  n_found_prongs=3;
-				  three_prong_tau_cand[2] = temphadron;
+				  second_prong_hadron = temphadron;
 				  break;
 				  	}
 
 
 				  else {
 					 n_found_prongs=2;
-					 three_prong_tau_cand[1] = temphadron;
+					 third_prong_hadron = temphadron;
 
 					 }
 
@@ -425,10 +426,15 @@ void tau_alg(pf_charged_t pf_charged[N_TRACKS], cluster_t neutral_clusters[N_CLU
       }
       if(n_found_prongs == 3 && n_taus < 4)//allow for max 4 3-prong taus to be reconstructed
         {
+#pragma HLS DEPENDENCE variable=tau_cands inter false
+#pragma HLS DEPENDENCE variable=tau_cands intra false
+
+    	  three_prong_tau_cand[1]=second_prong_hadron;
+    	  three_prong_tau_cand[2]=third_prong_hadron;
      tau_cands[n_taus].et          = three_prong_tau_cand[0].et + three_prong_tau_cand[1].et + three_prong_tau_cand[2].et;
      tau_cands[n_taus].eta         = weighted_avg_eta_p_p_p(three_prong_tau_cand[0], three_prong_tau_cand[1], three_prong_tau_cand[2]);
      tau_cands[n_taus].phi         = weighted_avg_phi_p_p_p(three_prong_tau_cand[0], three_prong_tau_cand[1], three_prong_tau_cand[2]);
-     tau_cands[n_taus].iso_charged = tau_cands[n_taus].et; //temporarily
+     //tau_cands[n_taus].iso_charged = tau_cands[n_taus].et; //temporarily
      tau_cands[n_taus].tau_type    = 10;
      n_taus++;
          }

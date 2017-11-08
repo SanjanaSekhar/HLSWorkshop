@@ -161,7 +161,7 @@ void check_pf_cand(pf_charged_t &pf_charged, cluster_t &central_cluster, algo_co
 // Returns the tau cands
 
 void tau_alg(pf_charged_t pf_charged[N_TRACKS], cluster_t neutral_clusters[N_CLUSTERS], algo_config_t algo_config, pftau_t tau_cands[N_TAUS]);
-
+cluster_t find_matched_cluster(cluster_t neutral_clusters[N_CLUSTERS], ap_uint<8> eta_1, ap_uint<8> phi_1);
 
 void build_electron_grid(pf_charged_t electron_cand, ap_uint<8> seed_cand_dr, pf_charged_t seed_hadron, pf_charged_t electron_grid[N_TAUS][5][5], ap_uint<4> n_taus);
 void find_tau_prongs(ap_uint<3> &n_prongs_found, pf_charged_t prong_cands[3], pf_charged_t pf_charged_hadron_signal_cand, pf_charged_t seed_hadron, ap_uint<8> seed_cand_dr,ap_uint<12> iso_sum_charged_hadron, algo_config_t algo_config);
