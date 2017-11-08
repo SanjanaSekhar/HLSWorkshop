@@ -366,23 +366,24 @@ void tau_alg(pf_charged_t pf_charged[N_TRACKS], cluster_t neutral_clusters[N_CLU
  }
 
 //modified three prong code to account for check of whether a pf_cand is a charged hadron or not
- void tau_three_prong_alg(pf_charged_t pf_charged[N_TRACKS], pf_charged_t three_prong_tau_cand[3], ap_int<11> three_prong_seed, ap_int<11> three_prong_delta_r){
-
-	 #pragma HLS ARRAY_PARTITION variable=pf_charged complete
+ void tau_three_prong_alg(pf_charged_t pf_charged[N_TRACKS], pf_charged_t three_prong_tau_cand[3], pftau_t tau_cands_O[4], ap_int<11> three_prong_seed, ap_int<11> three_prong_delta_r)
+ {
+#pragma HLS ARRAY_PARTITION variable=pf_charged complete
+#pragma HLS ARRAY_PARTITION variable=tau_cands complete 
 #pragma HLS ARRAY_PARTITION variable=three_prong_tau_cand complete
 #pragma HLS PIPELINE II=6
 #pragma HLS DATA_PACK variable=pf_charged
 #pragma HLS DATA_PACK variable=three_prong_tau_cand
-
+#pragma HLS DATA_PACK variable=tau_cands
 	 pf_charged_t temphadron;
 	 pf_charged_t seedhadron;
 #pragma HLS DATA_PACK variable=temphadron
 #pragma HLS DATA_PACK variable=seedhadron
 	 int n_found_prongs;
-	 int idx, jdx;
+	 int idx, jdx, n_taus=0;
 	 for (idx = 0; idx < N_TRACKS; idx++)	//note, tracks are already sorted by PT
 	 {
- #pragma HLS UNROLL
+#pragma HLS UNROLL
     if(pf_charged[idx].is_charged_hadron>0)
    {
 		  n_found_prongs = 0;
@@ -422,6 +423,15 @@ void tau_alg(pf_charged_t pf_charged[N_TRACKS], cluster_t neutral_clusters[N_CLU
         }
 			 }
       }
+      if(n_found_prongs == 3 && n_taus < 4)//allow for max 4 3-prong taus to be reconstructed
+        {
+     tau_cands[n_taus].et          = three_prong_tau_cand[0].et + three_prong_tau_cand[1].et + three_prong_tau_cand[2].et;
+     tau_cands[n_taus].eta         = weighted_avg_eta_p_p_p(three_prong_tau_cand[0], three_prong_tau_cand[1], three_prong_tau_cand[2]);
+     tau_cands[n_taus].phi         = weighted_avg_phi_p_p_p(three_prong_tau_cand[0], three_prong_tau_cand[1], three_prong_tau_cand[2]);
+     tau_cands[n_taus].iso_charged = tau_cands[n_taus].et; //temporarily
+     tau_cands[n_taus].tau_type    = 10;
+     n_taus++;
+         }
 		 }
 	 }
 
@@ -463,7 +473,7 @@ void tau_alg(pf_charged_t pf_charged[N_TRACKS], cluster_t neutral_clusters[N_CLU
 	 else
 		 delta_phi = phi_1 - phi_2;
 
-	 if(delta_phi + delta_eta < maximum_delta_R)
+	 if((delta_phi + delta_eta) < maximum_delta_R)
 		 output = 1;
 	 else
 		 output = 0;
