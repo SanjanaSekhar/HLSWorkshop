@@ -15,7 +15,7 @@ void file_read_in(
   
   ap_uint<14> et_total_tmp = 0;
   
-#pragma HLS PIPELINE II=8
+#pragma HLS PIPELINE II=6
   
   pf_charged_t charged_cands[N_TRACKS];
   
@@ -367,15 +367,19 @@ void tau_alg(pf_charged_t pf_charged[N_TRACKS], cluster_t neutral_clusters[N_CLU
 
 //modified three prong code to account for check of whether a pf_cand is a charged hadron or not
  void tau_three_prong_alg(pf_charged_t pf_charged[N_TRACKS], pf_charged_t three_prong_tau_cand[3], algo_config_t algo_config){
-
-   
+#pragma HLS ARRAY_PARTITION variable=pf_charged complete
+#pragma HLS ARRAY_PARTITION variable=three_prong_tau_cand complete
+#pragma HLS PIPELINE II=6
+	 pf_charged_t temphadron;
+	 pf_charged_t seedhadron;
+	 int n_found_prongs;
 	 for (int idx = 0; idx < N_TRACKS; idx++)	//note, tracks are already sorted by PT
 	 {
  #pragma HLS UNROLL
     if(pf_charged[idx].is_charged_hadron>0)
    {
-		 int n_found_prongs = 0;
-		 pf_charged_t seedhadron = pf_charged[idx];
+		  n_found_prongs = 0;
+		 seedhadron = pf_charged[idx];
 
 		 if(seedhadron.et < algo_config.three_prong_seed)
 		   continue;
@@ -388,7 +392,7 @@ void tau_alg(pf_charged_t pf_charged[N_TRACKS], cluster_t neutral_clusters[N_CLU
       if((pf_charged[jdx].is_charged_hadron>0) && (idx!=jdx))
       {
  #pragma HLS UNROLL
-			 pf_charged_t temphadron = pf_charged[jdx];
+			 temphadron = pf_charged[jdx];
 
 			 if(Delta_R(seedhadron.eta, seedhadron.phi, temphadron.eta, temphadron.phi, algo_config.three_prong_delta_r)){// 0x6 corresponds to deltaR of 0.12
 				 if(n_found_prongs<3){
