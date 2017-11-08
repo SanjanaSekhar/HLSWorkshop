@@ -1,6 +1,8 @@
+//use DSPs
+
 #include "ClusterFinder.hh"
 #include "ClusterTrackLinker.hh"
-#include <stdio.h>
+
 bool getClusterTrackLinker(uint16_t clusterET[NCaloLayer1Eta][NCaloLayer1Phi],
 			   uint16_t peakEta[NCaloLayer1Eta][NCaloLayer1Phi], 
 			   uint16_t peakPhi[NCaloLayer1Eta][NCaloLayer1Phi], 
@@ -32,45 +34,7 @@ bool getClusterTrackLinker(uint16_t clusterET[NCaloLayer1Eta][NCaloLayer1Phi],
   uint16_t clusterPhi[MaxNeutralClusters];
 #pragma HLS ARRAY_PARTITION variable=clusterEta complete dim=0
 #pragma HLS ARRAY_PARTITION variable=clusterPhi complete dim=0
-  printf("==== peakEta ====\n");
-  for(int i=0;i<NCaloLayer1Eta;i++)
-  {
-    for(int j=0;j<NCaloLayer1Phi;j++)
-    {
-      printf("%d,%d: %04x\n",i,j,peakEta[i][j]);
-    }
-  }
-  printf("==== peakPhi ====\n");
-  for(int i=0;i<NCaloLayer1Eta;i++)
-  {
-    for(int j=0;j<NCaloLayer1Phi;j++)
-    {
-      printf("%d,%d: %04x\n",i,j,peakPhi[i][j]);
-    }
-  }
-  printf("==== clusterET ====\n");
-  for(int i=0;i<NCaloLayer1Eta;i++)
-  {
-    for(int j=0;j<NCaloLayer1Phi;j++)
-    {
-      printf("%d,%d: %04x\n",i,j,clusterET[i][j]);
-    }
-  }
-    printf("==== trackPT ====\n");
-    for(int j=0;j<MaxTracksInCard;j++)
-    {
-      printf("%d: %04x\n",j,trackPT[j]);
-    }
-    printf("==== trackEta ====\n");
-    for(int j=0;j<MaxTracksInCard;j++)
-    {
-      printf("%d: %04x\n",j,trackEta[j]);
-    }
-    printf("==== trackPhi ====\n");
-    for(int j=0;j<MaxTracksInCard;j++)
-    {
-      printf("%d: %04x\n",j,trackPhi[j]);
-    }
+
   getClusterPositions(clusterEta,clusterPhi,peakPhi,peakEta);
 
   for(int tEta = 0; tEta < NCaloLayer1Eta; tEta++) {
@@ -124,42 +88,6 @@ bool getClusterTrackLinker(uint16_t clusterET[NCaloLayer1Eta][NCaloLayer1Phi],
     }
     linkedTrackQuality[track] |= (nMatches << 8);
   }
-  
-  printf("linkedTrackPT\n");
-  for(int i=0;i<MaxTracksInCard;i++)
-  {
-    printf("%d, %04x\n",i,linkedTrackPT[i]);
-  }
-   printf("linkedTrackEta\n");
-  for(int i=0;i<MaxTracksInCard;i++)
-  {
-    printf("%d, %04x\n",i,linkedTrackEta[i]);
-  }
-   printf("linkedTrackPhi\n");
-   for(int i=0;i<MaxTracksInCard;i++)
-  {
-    printf("%d, %04x\n",i,linkedTrackPhi[i]);
-  }
-   printf("linkedTrackQuality\n");
-  for(int i=0;i<MaxTracksInCard;i++)
-  {
-    printf("%d, %04x\n",i,linkedTrackQuality[i]);
-  }
-  printf("neutralClusterET\n");
-  for(int i=0;i<MaxNeutralClusters;i++)
-  {
-    printf("%d, %04x\n",i,neutralClusterET[i]);
-  }
-  printf("neutralClusterEta\n");
-  for(int i=0;i<MaxNeutralClusters;i++)
-  {
-    printf("%d, %04x\n",i,neutralClusterEta[i]);
-  }
-  printf("neutralClusterPhi\n");
-  for(int i=0;i<MaxNeutralClusters;i++)
-  {
-    printf("%d, %04x\n",i,neutralClusterPhi[i]);
-  }
   return true;
 }
 void getClusterPositions(
@@ -168,15 +96,29 @@ void getClusterPositions(
   uint16_t peakPhi[NCaloLayer1Eta][NCaloLayer1Phi],
   uint16_t peakEta[NCaloLayer1Eta][NCaloLayer1Phi])
 {
-  for(int tEta = 0; tEta < NCaloLayer1Eta; tEta++) {
+  /*double MaxTrackEta_d=double(MaxTrackEta);
+  double MaxTrackPhi_d=double(MaxTrackPhi);
+  double NCrystalsInEta_d=double(NCrystalsInEta);
+  double NCrystalsInPhi_d=double(NCrystalsInPhi);
+  double NCrystalsPerEtaPhi_d=double(NCrystalsPerEtaPhi);*/
+  //promote all ints to floats to possibly invoke DSPs
+
+  typedef uint16_t int_t;
+  int_t* MaxTrackEta_d=reinterpret_cast<int_t*>(MaxTrackEta);
+  int_t* MaxTrackPhi_d=reinterpret_cast<int_t*>(MaxTrackPhi);
+  int_t* NCrystalsInEta_d=reinterpret_cast<int_t*>(NCrystalsInEta);
+  int_t* NCrystalsInPhi_d=reinterpret_cast<int_t*>(NCrystalsInPhi);
+  int_t* A=MaxTrackEta_d / NCrystalsInEta_d;
+  int_t* B=MaxTrackPhi_d / NCrystalsInPhi_d;
+  for(int_t* tEta = 0; tEta < NCaloLayer1Eta; tEta++) {
 #pragma HLS UNROLL
-    for(int tPhi = 0; tPhi < NCaloLayer1Phi; tPhi++) {
+    for(int_t* tPhi = 0; tPhi < NCaloLayer1Phi; tPhi++) {
 #pragma HLS UNROLL
-      int cluster = tEta * NCaloLayer1Phi + tPhi;
+      int_t* cluster = tEta * NCaloLayer1Phi + tPhi;
       // Convert cruder calorimeter position to track LSB
       // This can be a LUT - perhaps HLS will take care of this efficiently
-      clusterEta[cluster] = (tEta * NCrystalsPerEtaPhi + peakEta[tEta][tPhi]) * MaxTrackEta / NCrystalsInEta;
-      clusterPhi[cluster] = (tPhi * NCrystalsPerEtaPhi + peakPhi[tEta][tPhi]) * MaxTrackPhi / NCrystalsInPhi;
+      clusterEta[cluster] = (tEta * NCrystalsPerEtaPhi + peakEta[tEta][tPhi])*A;
+      clusterPhi[cluster] = (tPhi * NCrystalsPerEtaPhi + peakPhi[tEta][tPhi])*B;
     }
   }
 }
