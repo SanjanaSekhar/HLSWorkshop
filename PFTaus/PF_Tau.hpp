@@ -5,7 +5,7 @@
 #include <ap_int.h>
 
 //define number of tracks
-#define N_TRACKS (15)
+#define N_TRACKS (7)
 #define N_CLUSTERS (100)
 #define N_TAUS (4)
 
@@ -152,8 +152,7 @@ void merge_strip_algo(cluster_t cluster_1, pf_charged_t electron_1, cluster_t cl
 
 void strip_alg(pftau_t &tau_cand, pf_charged_t electron_grid[5][5], cluster_t neutral_clusters[N_CLUSTERS], algo_config_t algo_config);
 
-void tau_three_prong_alg(track_t central_tracks[N_TRACKS], track_t three_prong_tau_cand[3], algo_config_t algo_config);
-
+void tau_three_prong_alg(pf_charged_t pf_charged[N_TRACKS], pf_charged_t three_prong_tau_cand[3], pftau_t tau_cands[4], ap_int<12> iso_sum_charged_hadron, ap_int<11> three_prong_seed, ap_int<11> three_prong_delta_r);
 void pf_match_alg(cluster_t central_clusters[N_CLUSTERS], track_t central_tracks[N_TRACKS] , pf_charged_t charged_cands[N_TRACKS],  algo_config_t algo_config);
 
 void check_pf_cand(pf_charged_t &pf_charged, cluster_t &central_cluster, algo_config_t algo_config);

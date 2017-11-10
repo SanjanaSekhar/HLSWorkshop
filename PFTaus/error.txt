@@ -1,0 +1,2 @@
+Could not write workspace metadata '/afs/cern.ch/user/s/ssekhar/.vivado_hls/2016.4/.autopilot_workspace21/.metadata/.plugins/org.eclipse.core.resources/0.snap'.
+Permission denied
