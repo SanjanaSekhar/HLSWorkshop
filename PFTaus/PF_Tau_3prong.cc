@@ -371,7 +371,7 @@ void tau_alg(pf_charged_t pf_charged[N_TRACKS], cluster_t neutral_clusters[N_CLU
 #pragma HLS ARRAY_PARTITION variable=pf_charged complete dim=0
 #pragma HLS ARRAY_PARTITION variable=tau_cands complete dim=0
 #pragma HLS ARRAY_PARTITION variable=three_prong_tau_cand complete dim=0
-
+pftau_t tau_cands_temp[4];
 //#pragma HLS DATAFLOW
 //#pragma HLS DATA_PACK variable=pf_charged
 //#pragma HLS DATA_PACK variable=three_prong_tau_cand
@@ -419,12 +419,12 @@ void tau_alg(pf_charged_t pf_charged[N_TRACKS], cluster_t neutral_clusters[N_CLU
           n_found_prongs=1;
         three_prong_tau_cand[1]=second_prong_hadron;
         three_prong_tau_cand[2]=third_prong_hadron;
-     tau_cands[n_taus].et          = three_prong_tau_cand[0].et + three_prong_tau_cand[1].et + three_prong_tau_cand[2].et;
-     tau_cands[n_taus].eta         = weighted_avg_eta_p_p_p(three_prong_tau_cand[0], three_prong_tau_cand[1], three_prong_tau_cand[2]);
-     tau_cands[n_taus].phi         = weighted_avg_phi_p_p_p(three_prong_tau_cand[0], three_prong_tau_cand[1], three_prong_tau_cand[2]);
-     tau_cands[n_taus].iso_charged = iso_sum_charged_hadron; //temporarily
-     tau_cands[n_taus].tau_type    = 10;
-     tau_cands[n_taus].eta_side    = three_prong_tau_cand[0].eta_side;
+     tau_cands_temp[n_taus].et          = three_prong_tau_cand[0].et + three_prong_tau_cand[1].et + three_prong_tau_cand[2].et;
+     tau_cands_temp[n_taus].eta         = weighted_avg_eta_p_p_p(three_prong_tau_cand[0], three_prong_tau_cand[1], three_prong_tau_cand[2]);
+     tau_cands_temp[n_taus].phi         = weighted_avg_phi_p_p_p(three_prong_tau_cand[0], three_prong_tau_cand[1], three_prong_tau_cand[2]);
+     tau_cands_temp[n_taus].iso_charged = iso_sum_charged_hadron; //temporarily
+     tau_cands_temp[n_taus].tau_type    = 10;
+     tau_cands_temp[n_taus].eta_side    = three_prong_tau_cand[0].eta_side;
      n_taus++;
 				  break;
 				  	}
@@ -446,6 +446,12 @@ void tau_alg(pf_charged_t pf_charged[N_TRACKS], cluster_t neutral_clusters[N_CLU
           
          }
 		 }
+     tau_cands[0]=tau_cands_temp[0];
+     tau_cands[1]=tau_cands_temp[1];
+     tau_cands[2]=tau_cands_temp[2];
+     tau_cands[3]=tau_cands_temp[3];
+
+
 	 }
 
  //}
