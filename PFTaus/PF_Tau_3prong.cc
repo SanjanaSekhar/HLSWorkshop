@@ -366,12 +366,14 @@ void tau_alg(pf_charged_t pf_charged[N_TRACKS], cluster_t neutral_clusters[N_CLU
  }
 
 //modified three prong code to account for check of whether a pf_cand is a charged hadron or not
- void tau_three_prong_alg(pf_charged_t pf_charged[N_TRACKS], pf_charged_t three_prong_tau_cand[3], pftau_t tau_cands[4], ap_int<12> iso_sum_charged_hadron, ap_int<11> three_prong_seed, ap_int<11> three_prong_delta_r)
+ void tau_three_prong_alg(pf_charged_t pf_charged[N_TRACKS],  pftau_t tau_cands[4], ap_int<12> iso_sum_charged_hadron, ap_int<11> three_prong_seed, ap_int<11> three_prong_delta_r)
  {
+  pf_charged_t three_prong_tau_cand[3];
+  pftau_t tau_cands_temp[4];
+#pragma HLS ARRAY_PARTITION variable=tau_cands_temp complete dim=0
 #pragma HLS ARRAY_PARTITION variable=pf_charged complete dim=0
 #pragma HLS ARRAY_PARTITION variable=tau_cands complete dim=0
 #pragma HLS ARRAY_PARTITION variable=three_prong_tau_cand complete dim=0
-pftau_t tau_cands_temp[4];
 //#pragma HLS DATAFLOW
 //#pragma HLS DATA_PACK variable=pf_charged
 //#pragma HLS DATA_PACK variable=three_prong_tau_cand
@@ -390,7 +392,7 @@ pftau_t tau_cands_temp[4];
     #pragma HLS UNROLL
 		 for (jdx = 0; jdx < N_TRACKS; jdx++)
 		 {
-      #pragma HLS LOOP_FLATTEN
+     // #pragma HLS LOOP_FLATTEN
       #pragma HLS UNROLL
       if((pf_charged[idx].is_charged_hadron>0) && (pf_charged[idx].et>=three_prong_seed))
    {
@@ -409,19 +411,17 @@ pftau_t tau_cands_temp[4];
 
 			 temphadron = pf_charged[jdx];
 
-			 if(Delta_R(three_prong_tau_cand[0].eta, three_prong_tau_cand[0].phi, temphadron.eta, temphadron.phi, three_prong_delta_r)>0){
+			 if(Delta_R(three_prong_tau_cand[0].eta, three_prong_tau_cand[0].phi, temphadron.eta, temphadron.phi, three_prong_delta_r)>0)
+       {
 				 // 0x6 corresponds to deltaR of 0.12
-
 				  if(n_found_prongs==2 && n_taus<4)
 				  {
-				  
-				  second_prong_hadron = temphadron;
           n_found_prongs=1;
         three_prong_tau_cand[1]=second_prong_hadron;
-        three_prong_tau_cand[2]=third_prong_hadron;
+        three_prong_tau_cand[2]=temphadron;
      tau_cands_temp[n_taus].et          = three_prong_tau_cand[0].et + three_prong_tau_cand[1].et + three_prong_tau_cand[2].et;
-     tau_cands_temp[n_taus].eta         = weighted_avg_eta_p_p_p(three_prong_tau_cand[0], three_prong_tau_cand[1], three_prong_tau_cand[2]);
-     tau_cands_temp[n_taus].phi         = weighted_avg_phi_p_p_p(three_prong_tau_cand[0], three_prong_tau_cand[1], three_prong_tau_cand[2]);
+    // tau_cands_temp[n_taus].eta         = weighted_avg_eta_p_p_p(three_prong_tau_cand[0], three_prong_tau_cand[1], three_prong_tau_cand[2]);
+     //tau_cands_temp[n_taus].phi         = weighted_avg_phi_p_p_p(three_prong_tau_cand[0], three_prong_tau_cand[1], three_prong_tau_cand[2]);
      tau_cands_temp[n_taus].iso_charged = iso_sum_charged_hadron; //temporarily
      tau_cands_temp[n_taus].tau_type    = 10;
      tau_cands_temp[n_taus].eta_side    = three_prong_tau_cand[0].eta_side;
@@ -432,12 +432,14 @@ pftau_t tau_cands_temp[4];
 
 				  else {
 					 n_found_prongs=2;
-					 third_prong_hadron = temphadron;
+					 second_prong_hadron = temphadron;
 
 					 }
 
         }
+        else continue;
 			 }
+       else continue;
       }
      // if(n_found_prongs == 3 && n_taus < 4)//allow for max 4 3-prong taus to be reconstructed
        // {
