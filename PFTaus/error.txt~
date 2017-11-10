@@ -1,5 +1,2 @@
 Could not write workspace metadata '/afs/cern.ch/user/s/ssekhar/.vivado_hls/2016.4/.autopilot_workspace21/.metadata/.plugins/org.eclipse.core.resources/0.snap'.
 Permission denied
-
-/data/tools/Vivado_HLS/2016.4/bin/loader: line 179: 1860611 Killed                  "$RDI_PROG" "$@"
-Finished C synthesis.
