@@ -1,3 +1,5 @@
+
+
  //===============================================================
 // AUTHOR: ISOBEL OJALVO
 //================================================================
@@ -365,80 +367,6 @@ void tau_alg(pf_charged_t pf_charged[N_TRACKS], cluster_t neutral_clusters[N_CLU
      }
  }
 
-//modified three prong code to account for check of whether a pf_cand is a charged hadron or not
- void tau_three_prong_alg(pf_charged_t pf_charged[N_TRACKS],  pftau_t tau_cands[4], ap_int<12> iso_sum_charged_hadron, ap_int<11> three_prong_seed, ap_int<11> three_prong_delta_r)
- {
-  pf_charged_t three_prong_tau_cand[3];
-  pf_charged_t temphadron, second_prong_hadron,third_prong_hadron;
-  pftau_t tau_cands_temp[4];
-
-#pragma HLS ARRAY_PARTITION variable=tau_cands_temp complete dim=0
-#pragma HLS ARRAY_PARTITION variable=pf_charged complete dim=0
-#pragma HLS ARRAY_PARTITION variable=tau_cands complete dim=0
-#pragma HLS ARRAY_PARTITION variable=three_prong_tau_cand complete dim=0
-#pragma HLS PIPELINE II=6
-
-  int n_found_prongs=1;
-  int idx, jdx, n_taus=0;
-
-  for (idx = 0; idx < N_TRACKS; idx++)  
-   {
-#pragma HLS UNROLL
-      if((pf_charged[idx].is_charged_hadron>0) && (pf_charged[idx].et>=three_prong_seed))
-      {
-        //seed_cand
-        three_prong_tau_cand[0] = pf_charged[idx];
-        n_found_prongs=1;
-        for (jdx = 0; jdx < N_TRACKS; jdx++)
-        {
-#pragma HLS UNROLL
-          //pf_cands are sorted according to decreasing Et 
-          if((pf_charged[jdx].is_charged_hadron>0) && (idx<jdx))
-          {
-            //possible prong if meets delta_R requirements
-            temphadron = pf_charged[jdx];
-            if(Delta_R(three_prong_tau_cand[0].eta, three_prong_tau_cand[0].phi, temphadron.eta, temphadron.phi, three_prong_delta_r)>0)
-            {
-              if(n_found_prongs==1)
-              {
-                n_found_prongs=2;
-                second_prong_hadron = temphadron;
-              }
-              else 
-              {
-                n_found_prongs=3;
-                third_prong_hadron = temphadron;
-                break;
-              }
-            }
-          }
-        }
-        //Max 4 3-prong taus can be reconstructed
-        if(n_found_prongs == 3 && n_taus < 4)
-        {
-          three_prong_tau_cand[1]=second_prong_hadron;
-          three_prong_tau_cand[2]=third_prong_hadron;
-          //tau_eT is sum_eT of all 3 prongs
-          tau_cands_temp[n_taus].et          = three_prong_tau_cand[0].et + three_prong_tau_cand[1].et + three_prong_tau_cand[2].et;
-          //tau position is a weighted average of all 3 prong positions
-          tau_cands_temp[n_taus].eta         = weighted_avg_eta_p_p_p(three_prong_tau_cand[0], three_prong_tau_cand[1], three_prong_tau_cand[2]);
-          tau_cands_temp[n_taus].phi         = weighted_avg_phi_p_p_p(three_prong_tau_cand[0], three_prong_tau_cand[1], three_prong_tau_cand[2]);
-          //isolation sum is computed previously and contain momenta of all electrons and charged hadrons in the cone
-          //this number is not accurate and must be computed within this function itself, hence temporary
-          tau_cands_temp[n_taus].iso_charged = iso_sum_charged_hadron; 
-          tau_cands_temp[n_taus].tau_type    = 10;
-          //tau eta_side is +1 or -1 depending on where the seed is 
-          tau_cands_temp[n_taus].eta_side    = three_prong_tau_cand[0].eta_side;
-          n_taus++;
-        }
-      }
-    //assign to output ports at the end so that design remains simple
-    tau_cands[0]=tau_cands_temp[0];
-    tau_cands[1]=tau_cands_temp[1];
-    tau_cands[2]=tau_cands_temp[2];
-    tau_cands[3]=tau_cands_temp[3];
-  }
-}
 
  void merge_strip_algo(cluster_t cluster_1, pf_charged_t electron_1, cluster_t cluster_2, pf_charged_t electron_2, strip_t &strip, algo_config_t algo_config){
    cluster_t temp_cluster_1;
@@ -461,7 +389,171 @@ void tau_alg(pf_charged_t pf_charged[N_TRACKS], cluster_t neutral_clusters[N_CLU
      strip.phi = weighted_avg_phi_c_c(temp_cluster_1, temp_cluster_2);
    }
  }
+//changing all structs to arrays 
+//particle type: 00 :electron; 01 :charged hadron; 10: muon
+//position of tau cand is not weighted avg but a 
+void tau_three_prong_alg(ap_uint<11> pf_cands_et[N_TRACKS],
+                         ap_uint<1> pf_cands_eta_side[N_TRACKS],
+                         ap_uint<7> pf_cands_eta[N_TRACKS],
+                         ap_uint<8> pf_cands_phi[N_TRACKS],
+                         ap_uint<2> pf_cands_particle_type[N_TRACKS],
+                         ap_uint<11> tau_cands_et[4],
+                         ap_uint<1> tau_cands_eta_side[4],
+                         ap_uint<7> tau_cands_eta[4],
+                         ap_uint<8> tau_cands_phi[4],
+                         ap_uint<2> tau_cands_type[4],
+                         ap_uint<12> tau_cands_iso_charged[4],
+                         ap_int<12> iso_sum_charged_hadron, 
+                         ap_int<11> three_prong_seed, 
+                         ap_int<11> three_prong_delta_r)
+{
+/*  pf_charged_t three_prong_tau_cand[3];
+  pf_charged_t temphadron, second_prong_hadron,third_prong_hadron;
+  pftau_t tau_cands_temp[4];
 
+#pragma HLS ARRAY_PARTITION variable=tau_cands_temp complete dim=0
+#pragma HLS ARRAY_PARTITION variable=pf_charged complete dim=0
+#pragma HLS ARRAY_PARTITION variable=tau_cands complete dim=0
+#pragma HLS ARRAY_PARTITION variable=three_prong_tau_cand complete dim=0
+*/
+ap_uint<11> three_prong_cand_et[3];
+ap_uint<1> three_prong_cand_eta_side[3];
+ap_uint<7> three_prong_cand_eta[3;
+ap_uint<8> three_prong_cand_phi[3];
+ap_uint<2> three_prong_cand_particle_type[3];
+
+ap_uint<11> temphadron_et;
+ap_uint<1> temphadron_eta_side;
+ap_uint<7> temphadron_eta;
+ap_uint<8> temphadron_phi;
+ap_uint<2> temphadron_particle_type;
+
+/*                     
+ap_uint<11> tau_cands_temp_et[4],
+ap_uint<1> tau_cands_eta_side[4],
+ap_uint<7> tau_cands_eta[4],
+ap_uint<8> tau_cands_phi[4],
+ap_uint<2> tau_cands_type[4],
+ap_uint<12> tau_cands_iso_charged[4],
+*/
+
+#pragma HLS ARRAY_PARTITION variable=three_prong_cand_et complete dim=0
+#pragma HLS ARRAY_PARTITION variable=three_prong_cand_eta complete dim=0
+#pragma HLS ARRAY_PARTITION variable=three_prong_cand_phi complete dim=0
+#pragma HLS ARRAY_PARTITION variable=three_prong_cand_eta_side complete dim=0
+#pragma HLS ARRAY_PARTITION variable=three_prong_cand_particle_type complete dim=0
+
+#pragma HLS ARRAY_PARTITION variable=pf_cands_et complete dim=0
+#pragma HLS ARRAY_PARTITION variable=pf_cands_eta complete dim=0
+#pragma HLS ARRAY_PARTITION variable=pf_cands_phi complete dim=0
+#pragma HLS ARRAY_PARTITION variable=pf_cands_eta_side complete dim=0
+#pragma HLS ARRAY_PARTITION variable=pf_cands_particle_type complete dim=0
+
+#pragma HLS ARRAY_PARTITION variable=tau_cands_et complete dim=0
+#pragma HLS ARRAY_PARTITION variable=tau_cands_eta complete dim=0
+#pragma HLS ARRAY_PARTITION variable=tau_cands_phi complete dim=0
+#pragma HLS ARRAY_PARTITION variable=tau_cands_eta_side complete dim=0
+#pragma HLS ARRAY_PARTITION variable=tau_cands_type complete dim=0
+#pragma HLS ARRAY_PARTITION variable=tau_cands_iso_charged complete dim=0
+
+#pragma HLS PIPELINE II=6
+
+  int n_found_prongs=1;
+  int idx, jdx, n_taus=0;
+
+  for (idx = 0; idx < N_TRACKS; idx++)  
+  {
+#pragma HLS UNROLL
+      if((pf_cands_particle_type[idx]==01) && (pf_cands_et[idx]>=three_prong_seed))
+      {
+        //seed_cand
+        //three_prong_tau_cand[0] = pf_charged[idx];
+
+        n_found_prongs=1;
+
+        three_prong_cand_et[0]=pf_cands_et[idx];
+        three_prong_cand_eta[0]=pf_cands_eta[idx];
+        three_prong_cand_phi[0]=pf_cands_phi[idx];
+        three_prong_cand_eta_side[0]=pf_cands_eta_side[idx];
+        three_prong_cand_particle_type[0]=01;
+
+        for (jdx = 0; jdx < N_TRACKS; jdx++)
+        {
+#pragma HLS UNROLL
+          //pf_cands are sorted according to decreasing Et 
+          if((pf_cands_particle_type[jdx]==01) && (idx<jdx))
+          {
+            //possible prong if meets delta_R requirements
+            //temphadron = pf_charged[jdx];
+
+            temphadron_et=pf_cands_et[jdx];
+            temphadron_eta=pf_cands_eta[jdx];
+            temphadron_phi=pf_cands_phi[jdx];
+            temphadron_eta_side=pf_cands_eta_side[jdx];
+            temphadron_particle_type]=01;
+
+            if(Delta_R(three_prong_cand_eta[0], three_prong_cand_phi[0], temphadron_eta, temphadron_phi, three_prong_delta_r)>0)
+            {
+              if(n_found_prongs==1)
+              {
+                n_found_prongs=2;
+                
+                three_prong_cand_et[1]=temphadron_et;
+                three_prong_cand_eta[1]=temphadron_eta;
+                three_prong_cand_phi[1]=temphadron_phi;
+                three_prong_cand_eta_side[1]=temphadron_eta_side;
+                three_prong_cand_particle_type[1]=01;
+              }
+              else 
+              {
+                n_found_prongs=3;
+
+                three_prong_cand_et[2]=temphadron_et;
+                three_prong_cand_eta[2]=temphadron_eta;
+                three_prong_cand_phi[2]=temphadron_phi;
+                three_prong_cand_eta_side[2]=temphadron_eta_side;
+                three_prong_cand_particle_type[2]=01;
+
+                break;
+              }
+            }
+          }
+        }
+        //Max 4 3-prong taus can be reconstructed
+        if(n_found_prongs == 3 && n_taus < 4)
+        {
+          /*
+          three_prong_tau_cand[1]=second_prong_hadron;
+          three_prong_tau_cand[2]=third_prong_hadron;
+          //tau_eT is sum_eT of all 3 prongs
+          tau_cands_temp[n_taus].et          = three_prong_tau_cand[0].et + three_prong_tau_cand[1].et + three_prong_tau_cand[2].et;
+          //tau position is a weighted average of all 3 prong positions
+          //tau_cands_temp[n_taus].eta         = weighted_avg_eta_p_p_p(three_prong_tau_cand[0], three_prong_tau_cand[1], three_prong_tau_cand[2]);
+          //tau_cands_temp[n_taus].phi         = weighted_avg_phi_p_p_p(three_prong_tau_cand[0], three_prong_tau_cand[1], three_prong_tau_cand[2]);
+          //isolation sum is computed previously and contain momenta of all electrons and charged hadrons in the cone
+          //this number is not accurate and must be computed within this function itself, hence temporary
+          tau_cands_temp[n_taus].iso_charged = iso_sum_charged_hadron; 
+          tau_cands_temp[n_taus].tau_type    = 10;
+          //tau eta_side is +1 or -1 depending on where the seed is 
+          tau_cands_temp[n_taus].eta_side    = three_prong_tau_cand[0].eta_side;
+          */
+          tau_cands_et[n_taus]=three_prong_cand_et[0]+three_prong_cand_et[1]+three_prong_cand_et[2];
+          tau_cands_eta[n_taus]=three_prong_cand_eta[0];
+          tau_cands_phi[n_taus]=three_prong_cand_phi[0];
+          tau_cands_eta_side[n_taus]=three_prong_cand_eta_side[0];
+          tau_cands_iso_charged[n_taus]=iso_sum_charged_hadron;
+          tau_cands_type[n_taus]=10;
+
+          n_taus++;
+        }
+      }
+    //assign to output ports at the end so that design remains simple
+    /*tau_cands[0]=tau_cands_temp[0];
+    tau_cands[1]=tau_cands_temp[1];
+    tau_cands[2]=tau_cands_temp[2];
+    tau_cands[3]=tau_cands_temp[3];
+    */
+  }
  ap_uint<1> Delta_R(ap_uint<8> eta_1, ap_uint<8> phi_1, ap_uint<8> eta_2, ap_uint<8> phi_2, ap_uint<8> maximum_delta_R){
    ap_uint<1> output;
    ap_uint<8> delta_eta = 0;
