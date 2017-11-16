@@ -418,7 +418,7 @@ void tau_three_prong_alg(ap_uint<11> pf_cands_et[N_TRACKS],
 */
 ap_uint<11> three_prong_cand_et[3];
 ap_uint<1> three_prong_cand_eta_side[3];
-ap_uint<7> three_prong_cand_eta[3;
+ap_uint<7> three_prong_cand_eta[3];
 ap_uint<8> three_prong_cand_phi[3];
 ap_uint<2> three_prong_cand_particle_type[3];
 
@@ -477,11 +477,11 @@ ap_uint<12> tau_cands_iso_charged[4],
         three_prong_cand_eta_side[0]=pf_cands_eta_side[idx];
         three_prong_cand_particle_type[0]=01;
 
-        for (jdx = 0; jdx < N_TRACKS; jdx++)
+        for (jdx = idx+1; jdx < N_TRACKS; jdx++)
         {
 #pragma HLS UNROLL
           //pf_cands are sorted according to decreasing Et 
-          if((pf_cands_particle_type[jdx]==01) && (idx<jdx))
+          if(pf_cands_particle_type[jdx]==01)
           {
             //possible prong if meets delta_R requirements
             //temphadron = pf_charged[jdx];
@@ -490,10 +490,9 @@ ap_uint<12> tau_cands_iso_charged[4],
             temphadron_eta=pf_cands_eta[jdx];
             temphadron_phi=pf_cands_phi[jdx];
             temphadron_eta_side=pf_cands_eta_side[jdx];
-            temphadron_particle_type]=01;
-
-            if(Delta_R(three_prong_cand_eta[0], three_prong_cand_phi[0], temphadron_eta, temphadron_phi, three_prong_delta_r)>0)
-            {
+            temphadron_particle_type=01;
+            ap_uint<1> output=Delta_R(three_prong_cand_eta[0], three_prong_cand_phi[0], temphadron_eta, temphadron_phi, three_prong_delta_r);
+            if(output==1){
               if(n_found_prongs==1)
               {
                 n_found_prongs=2;
@@ -504,7 +503,7 @@ ap_uint<12> tau_cands_iso_charged[4],
                 three_prong_cand_eta_side[1]=temphadron_eta_side;
                 three_prong_cand_particle_type[1]=01;
               }
-              else 
+              else if(n_found_prongs==2)
               {
                 n_found_prongs=3;
 
@@ -514,7 +513,7 @@ ap_uint<12> tau_cands_iso_charged[4],
                 three_prong_cand_eta_side[2]=temphadron_eta_side;
                 three_prong_cand_particle_type[2]=01;
 
-                break;
+                //break;
               }
             }
           }
@@ -553,7 +552,7 @@ ap_uint<12> tau_cands_iso_charged[4],
     tau_cands[2]=tau_cands_temp[2];
     tau_cands[3]=tau_cands_temp[3];
     */
-  }
+  }}
  ap_uint<1> Delta_R(ap_uint<8> eta_1, ap_uint<8> phi_1, ap_uint<8> eta_2, ap_uint<8> phi_2, ap_uint<8> maximum_delta_R){
    ap_uint<1> output;
    ap_uint<8> delta_eta = 0;
@@ -860,7 +859,6 @@ ap_uint<12> tau_cands_iso_charged[4],
    }
    //fix me
    return cluster_to_return;
-
  }
 
  // Offset by -2 in eta and -2 in phi, special geometry to grab the grid

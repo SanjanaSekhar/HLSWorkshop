@@ -94,8 +94,7 @@ typedef struct{
 void file_read_in(track_t tracks[N_TRACKS],
 		  cluster_t clusters[N_CLUSTERS],
 		  algo_config_t algo_config,
-		  algo_outputs_t & algo_outputs
-);
+		  algo_outputs_t & algo_outputs);
 
 
 ap_uint<1> Delta_R(ap_uint<8> eta_1,
