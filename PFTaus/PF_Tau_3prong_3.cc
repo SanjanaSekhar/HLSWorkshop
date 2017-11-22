@@ -3,20 +3,20 @@
 //changed all ap_int to uint
 //particle type: 00 :electron; 01 :charged hadron; 10: muon
 //position of tau cand is not weighted avg but a 
-void tau_three_prong_alg(uint16_t pf_cands_et[N_TRACKS],
-                         uint16_t pf_cands_eta_side[N_TRACKS],
-                         uint16_t pf_cands_eta[N_TRACKS],
-                         uint16_t pf_cands_phi[N_TRACKS],
-                         uint16_t pf_cands_particle_type[N_TRACKS],
-                         uint16_t tau_cands_et[4],
-                         uint16_t tau_cands_eta_side[4],
-                         uint16_t tau_cands_eta[4],
-                         uint16_t tau_cands_phi[4],
-                         uint16_t tau_cands_type[4],
-                         uint16_t tau_cands_iso_charged[4],
-                         uint16_t iso_sum_charged_hadron, 
-                         uint16_t three_prong_seed, 
-                         uint16_t three_prong_delta_r)
+void tau_three_prong_alg(uint8_t pf_cands_et[N_TRACKS],
+                         uint8_t pf_cands_eta_side[N_TRACKS],
+                         uint8_t pf_cands_eta[N_TRACKS],
+                         uint8_t pf_cands_phi[N_TRACKS],
+                         uint8_t pf_cands_particle_type[N_TRACKS],
+                         uint8_t tau_cands_et[4],
+                         uint8_t tau_cands_eta_side[4],
+                         uint8_t tau_cands_eta[4],
+                         uint8_t tau_cands_phi[4],
+                         uint8_t tau_cands_type[4],
+                         uint8_t tau_cands_iso_charged[4],
+                         uint8_t iso_sum_charged_hadron, 
+                         uint8_t three_prong_seed, 
+                         uint8_t three_prong_delta_r)
 {
 /*  pf_charged_t three_prong_tau_cand[3];
   pf_charged_t temphadron, second_prong_hadron,third_prong_hadron;
@@ -27,25 +27,25 @@ void tau_three_prong_alg(uint16_t pf_cands_et[N_TRACKS],
 #pragma HLS ARRAY_PARTITION variable=tau_cands complete dim=0
 #pragma HLS ARRAY_PARTITION variable=three_prong_tau_cand complete dim=0
 */
-uint16_t three_prong_cand_et[3];
-uint16_t three_prong_cand_eta_side[3];
-uint16_t three_prong_cand_eta[3];
-uint16_t three_prong_cand_phi[3];
-uint16_t three_prong_cand_particle_type[3];
+uint8_t three_prong_cand_et[3];
+uint8_t three_prong_cand_eta_side[3];
+uint8_t three_prong_cand_eta[3];
+uint8_t three_prong_cand_phi[3];
+uint8_t three_prong_cand_particle_type[3];
 
-uint16_t temphadron_et;
-uint16_t temphadron_eta_side;
-uint16_t temphadron_eta;
-uint16_t temphadron_phi;
-uint16_t temphadron_particle_type;
+uint8_t temphadron_et;
+uint8_t temphadron_eta_side;
+uint8_t temphadron_eta;
+uint8_t temphadron_phi;
+uint8_t temphadron_particle_type;
 
 /*                     
-uint16_t tau_cands_temp_et[4],
-uint16_tF tau_cands_eta_side[4],
-uint16_t tau_cands_eta[4],
-uint16_t tau_cands_phi[4],
-uint16_t tau_cands_type[4],
-uint16_t tau_cands_iso_charged[4],
+uint8_t tau_cands_temp_et[4],
+uint8_tF tau_cands_eta_side[4],
+uint8_t tau_cands_eta[4],
+uint8_t tau_cands_phi[4],
+uint8_t tau_cands_type[4],
+uint8_t tau_cands_iso_charged[4],
 */
 
 #pragma HLS ARRAY_PARTITION variable=three_prong_cand_et complete dim=0
@@ -102,7 +102,7 @@ uint16_t tau_cands_iso_charged[4],
             temphadron_phi=pf_cands_phi[jdx];
             temphadron_eta_side=pf_cands_eta_side[jdx];
             temphadron_particle_type=01;
-            uint16_tF output=Delta_R(three_prong_cand_eta[0], three_prong_cand_phi[0], temphadron_eta, temphadron_phi, three_prong_delta_r);
+            uint8_tF output=Delta_R(three_prong_cand_eta[0], three_prong_cand_phi[0], temphadron_eta, temphadron_phi, three_prong_delta_r);
             if(output==1){
               if(n_found_prongs==1)
               {
@@ -164,10 +164,10 @@ uint16_t tau_cands_iso_charged[4],
     tau_cands[3]=tau_cands_temp[3];
     */
   }}
- uint16_tF Delta_R(uint16_t eta_1, uint16_t phi_1, uint16_t eta_2, uint16_t phi_2, uint16_t maximum_delta_R){
-   uint16_t output;
-   uint16_t delta_eta = 0;
-   uint16_t delta_phi = 0;
+ uint8_tF Delta_R(uint8_t eta_1, uint8_t phi_1, uint8_t eta_2, uint8_t phi_2, uint8_t maximum_delta_R){
+   uint8_t output;
+   uint8_t delta_eta = 0;
+   uint8_t delta_phi = 0;
    if(eta_2>eta_1)
      delta_eta = eta_2 - eta_1;
    else
